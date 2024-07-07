@@ -4,6 +4,7 @@ import { contextMenuContent } from "@/assets/data/contextMenuContent";
 import { ContextMenuContent, ContextMenuItem, ContextMenuTrigger, ContextMenu as CM } from "../ui/context-menu";
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 
 function MenuItem({ item }) {
@@ -27,13 +28,24 @@ function MenuItem({ item }) {
 
 
 function Menu() {
+    const pathName = usePathname();
 
     return (
         <>
             <ContextMenuContent className="backdrop-blur-lg bg-white bg-opacity-50 rounded-lg">
                 {
                     contextMenuContent.links.map((item, index) => (
-                        <MenuItem key={index} item={item} />
+                        /* INFO: 1ST NAVLINK WILL BE CHANGED IF ITS ABOUT PAGE (/about) OTHERWISE RESPECTED CONTENT WILL GO */
+                        item.id === 1
+                            ? pathName === "/about" ? <MenuItem key={index} item={
+                                {
+                                    "id": 1,
+                                    "text": "Home",
+                                    "odia": "ହୋମ",
+                                    "link": "/"
+                                }
+                            } /> : <MenuItem key={index} item={item} />
+                            : <MenuItem key={index} item={item} />
                     ))
                 }
             </ContextMenuContent>

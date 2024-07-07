@@ -4,21 +4,25 @@
 export const contextMenuContent = {
     links: [
         {
+            "id": 1,
             "text": "Immersive Sky Experience",
             "odia": "ଏମରସିଭ ସ୍କା ଏ ଏକ୍ସପେ ରିଏନ୍ସ",
             "link": "/about"
         },
         {
+            "id": 2,
             "text": "Tamarind Sky",
             "odia": "ଆକା ଶ କୟାଁ",
             "link": "/tamarindsky"
         },
         {
+            "id": 3,
             "text": "Image Archival Page",
             "odia": "ପରିବେ ଶ ବିପର୍ଯ୍ୟୟ ପ୍ରତିଛବି ଅଭିଲେ ଖା ଗା ର",
             "link": "/imagearchive"
         },
         {
+            "id": 4,
             "text": "Register",
             "odia": "ରେ ଜିଷ୍ଟର",
             "link": "/login"
