@@ -6,6 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import BottomGradient from "@/components/common/BottomGradient";
 import { User2 } from "lucide-react";
 import ContextMenu from "@/components/layout/NavContextMenu";
+import Link from "next/link";
 
 
 export default function LoginPage() {
@@ -23,6 +24,11 @@ export default function LoginPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (!email || !password) {
+            alert("Please fill in all fields");
+            return;
+        }
 
         if (!terms) {
             alert("Please accept terms and conditions");
@@ -61,6 +67,18 @@ export default function LoginPage() {
 
                             <div className="bg-gradient-to-r from-transparent via-neutral-500  to-transparent my-8 h-[1px] w-full" />
 
+                            {/* <Link href="/register">
+                                <button
+                                    className="relative group/btn flex space-x-2 items-center justify-center px-4 w-full rounded-md h-12 font-medium shadow-input bg-zinc-950 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
+                                    type="submit"
+                                >
+                                    <User2 className="w-4 h-4 text-neutral-200" />
+                                    <span className="text-neutral-200 text-sm">
+                                        Sign Up
+                                    </span>
+                                    <BottomGradient />
+                                </button>
+                            </Link> */}
                             <button
                                 className="relative group/btn flex space-x-2 items-center justify-center px-4 w-full rounded-md h-12 font-medium shadow-input bg-zinc-950 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
                                 type="submit"
@@ -71,6 +89,10 @@ export default function LoginPage() {
                                 </span>
                                 <BottomGradient />
                             </button>
+
+                            <p className="text-sm text-gray-700 mt-2 text-center">
+                                Do not have an account?{" "} <Link href="/register"><span className="text-zinc-950 underline font-bold">Sign Up</span></Link>
+                            </p>
                         </form>
                     </div>
                 </main>

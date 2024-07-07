@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import ContextMenu from "@/components/layout/NavContextMenu";
+import Link from "next/link";
 
 
 export default function RegisterPage() {
@@ -31,6 +32,16 @@ export default function RegisterPage() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        if (!username || !email || !password || !confirmPassword) {
+            alert("Please fill in all fields");
+            return;
+        }
+
+        if (password.length < 8) {
+            alert("Password must be at least 8 characters");
+            return;
+        }
+
         if (password !== confirmPassword) {
             alert("Passwords do not match");
             return;
@@ -55,6 +66,10 @@ export default function RegisterPage() {
                             <button className="mt-4 inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2">
                                 Sign Up
                             </button>
+
+                            <p className="text-sm text-gray-700 mt-2 text-center">
+                                Already have an account?{" "} <Link href="/login"><span className="text-zinc-950 underline font-bold">Sign In</span></Link>
+                            </p>
                         </form>
                     </div>
                 </main>
