@@ -61,7 +61,7 @@ export default function LoginPage() {
                                     </p>
                                 </div>
                             </div>
-                            <button className="mt-4 inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2">
+                            <button className="mt-4 inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2" type="submit">
                                 Sign In
                             </button>
 
@@ -81,7 +81,6 @@ export default function LoginPage() {
                             </Link> */}
                             <button
                                 className="relative group/btn flex space-x-2 items-center justify-center px-4 w-full rounded-md h-12 font-medium shadow-input bg-zinc-950 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
-                                type="submit"
                             >
                                 <User2 className="w-4 h-4 text-neutral-200" />
                                 <span className="text-neutral-200 text-sm">

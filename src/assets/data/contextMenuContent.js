@@ -23,7 +23,7 @@ export const contextMenuContent = {
         },
         {
             "id": 4,
-            "text": "Register",
+            "text": "Login",
             "odia": "ରେ ଜିଷ୍ଟର",
             "link": "/login"
         }
