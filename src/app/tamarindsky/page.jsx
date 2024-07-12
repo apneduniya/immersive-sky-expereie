@@ -11,7 +11,8 @@ import ContextMenu from "@/components/layout/NavContextMenu";
 
 
 export default function TamarindSkyPage() {
-	const [arrowsVisible, setArrowsVisible] = useState(false);
+	const [arrowLeftVisible, setArrowLeftVisible] = useState(false);
+	const [arrowRightVisible, setArrowRightVisible] = useState(false);
 	const [textHover, setTextHover] = useState(false);
 	const ref = useRef(null);
 	const [image, takeScreenshot] = useScreenshot();
@@ -31,21 +32,17 @@ export default function TamarindSkyPage() {
 		}
 	}, [image])
 
-	useEffect(() => {
-		console.log(arrowsVisible);
-	}, [arrowsVisible]);
-
 	return (
 		<>
 			<ContextMenu>
-				<main ref={ref} className="min-h-dvh w-full px-10 flex items-center justify-between bg-img-bg-5 bg-cover bg-center">
-					<div className="min-h-dvh h-full w-5 md:w-8 lg:w-10 flex items-center justify-center" onMouseEnter={() => setArrowsVisible(true)} onMouseLeave={() => setArrowsVisible(false)}>
+				<main ref={ref} className="min-h-dvh w-full flex items-center justify-between bg-img-bg-5 bg-cover bg-center">
+					<div className="pl-10 min-h-dvh h-full w-15 md:w-18 lg:w-20 flex items-center justify-center" onMouseEnter={() =>setArrowLeftVisible(true)} onMouseLeave={() =>setArrowLeftVisible(false)}>
 						{
-							arrowsVisible && <Image src={arrowLeftIcon} alt="arrow-left" className="cursor-pointer select-none w-5 md:w-8 lg:w-10" />
+							arrowLeftVisible && <Image src={arrowLeftIcon} alt="arrow-left" className="cursor-pointer select-none w-5 md:w-8 lg:w-10" />
 						}
 					</div>
 					<div className="relative flex items-center justify-center flex-col gap-12 w-4/5">
-						<Image src={tamarindImg} alt="tamarind" className="xl:w-[820px] lg:w-[680px] md:w-96 w-60 select-none cursor-pointer" onClick={getImage} onMouseEnter={() => setArrowsVisible(true)} onMouseLeave={() => setArrowsVisible(false)} />
+						<Image src={tamarindImg} alt="tamarind" className="lg:w-[680px] md:w-96 w-60 select-none cursor-pointer" onClick={getImage} />
 						<p className="lg:w-[740px] w-full text-center cursor-default 2xl:text-2xl xl:text-2xl lg:text-2xl md:text-xl text-lg self-end" onMouseEnter={() => setTextHover(true)} onMouseLeave={() => setTextHover(false)}>
 							{
 								textHover ? "ସମୁଦ୍ର ଖାଉଛି ମାଟି । ମାଟି ଖାଉଛି ନୋଳିଆ । ନୋଳିଆ ଖାଉଛି ମାଛ । ମାଛ ଖାଉଛି ଜାଲି । ଜାଲି ଖାଉଛି ସମୁଦ୍ର ।" :
@@ -53,9 +50,9 @@ export default function TamarindSkyPage() {
 							}
 						</p>
 					</div>
-					<div className="min-h-dvh h-full w-5 md:w-8 lg:w-10 flex items-center justify-center" onMouseEnter={() => setArrowsVisible(true)} onMouseLeave={() => setArrowsVisible(false)}>
+					<div className="pr-10 min-h-dvh h-full w-15 md:w-18 lg:w-20 flex items-center justify-center" onMouseEnter={() =>setArrowRightVisible(true)} onMouseLeave={() =>setArrowRightVisible(false)}>
 						{
-							arrowsVisible && <Image src={arrowRightIcon} alt="arrow-right" className="cursor-pointer select-none w-5 md:w-8 lg:w-10" />
+							arrowRightVisible && <Image src={arrowRightIcon} alt="arrow-right" className="cursor-pointer select-none w-5 md:w-8 lg:w-10" />
 						}
 					</div>
 				</main>

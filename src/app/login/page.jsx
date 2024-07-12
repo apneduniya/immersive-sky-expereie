@@ -45,16 +45,16 @@ export default function LoginPage() {
         <>
             <ContextMenu>
                 <main className="min-h-dvh max-w-dvw w-full flex items-center justify-center bg-img-bg-8 bg-cover bg-center">
-                    <div>
-                        <form className="flex flex-col gap-4 px-5 lg:px-10 py-5 w-dvw max-w-[520px]" onSubmit={handleSubmit}>
-                            <Input type="email" placeholder="Email" onChange={handleEmailChange} value={email} className="w-full h-12" />
-                            <Input type="password" placeholder="Password" onChange={handlePasswordChange} value={password} className="w-full h-12" />
+                    <div className="px-5 lg:px-10 py-5 w-dvw max-w-[520px]">
+                        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+                            <Input type="email" placeholder="Email/Phone" onChange={handleEmailChange} value={email} className="w-full h-12 text-center" />
+                            <Input type="password" placeholder="Password" onChange={handlePasswordChange} value={password} className="w-full h-12 text-center" />
                             <div className="mt-4 items-top flex space-x-2">
                                 <Checkbox id="terms1" checked={terms} onClick={() => setTerms(!terms)} />
                                 <div className="grid gap-1.5 leading-none">
                                     <label
                                         htmlFor="terms1"
-                                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-white"
                                     >
                                         Accept terms and conditions
                                     </label>
@@ -81,22 +81,22 @@ export default function LoginPage() {
                                     <BottomGradient />
                                 </button>
                             </Link> */}
-                            <Link href="/upload-image">
-                                <button
-                                    className="relative group/btn flex space-x-2 items-center justify-center px-4 w-full rounded-md h-12 font-medium shadow-input bg-zinc-950 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
-                                >
-                                    <User2 className="w-4 h-4 text-neutral-200" />
-                                    <span className="text-neutral-200 text-sm">
-                                        Enter as a guest
-                                    </span>
-                                    <BottomGradient />
-                                </button>
-                            </Link>
-
-                            <p className="text-sm text-gray-700 mt-2 text-center">
-                                Do not have an account?{" "} <Link href="/register"><span className="text-zinc-950 underline font-bold">Sign Up</span></Link>
-                            </p>
                         </form>
+                        <Link href="/upload-image">
+                            <button
+                                className="relative group/btn flex space-x-2 items-center justify-center px-4 w-full rounded-md h-12 font-medium shadow-input bg-zinc-950 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
+                            >
+                                <User2 className="w-4 h-4 text-neutral-200" />
+                                <span className="text-neutral-200 text-sm">
+                                    Enter as a guest
+                                </span>
+                                <BottomGradient />
+                            </button>
+                        </Link>
+
+                        <p className="text-sm text-gray-700 mt-2 text-center">
+                            Do not have an account?{" "} <Link href="/register"><span className="text-zinc-950 underline font-bold">Sign Up</span></Link>
+                        </p>
                     </div>
                 </main>
             </ContextMenu>

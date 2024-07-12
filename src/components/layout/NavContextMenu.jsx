@@ -40,8 +40,8 @@ function Menu() {
                             ? pathName === "/about" ? <MenuItem key={index} item={
                                 {
                                     "id": 1,
-                                    "text": "Home",
-                                    "odia": "ହୋମ",
+                                    "text": item.text,
+                                    "odia": item.odia,
                                     "link": "/"
                                 }
                             } /> : <MenuItem key={index} item={item} />
