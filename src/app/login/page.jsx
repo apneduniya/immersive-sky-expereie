@@ -25,18 +25,20 @@ export default function LoginPage() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!email || !password) {
-            alert("Please fill in all fields");
-            return;
-        }
+        // if (!email || !password) {
+        //     alert("Please fill in all fields");
+        //     return;
+        // }
 
-        if (!terms) {
-            alert("Please accept terms and conditions");
-            return;
-        }
+        // if (!terms) {
+        //     alert("Please accept terms and conditions");
+        //     return;
+        // }
 
-        console.log("Email:", email);
-        console.log("Password", password);
+        // console.log("Email:", email);
+        // console.log("Password", password);
+
+        window.location.href = "/upload-image";
     }
 
     return (
@@ -79,15 +81,17 @@ export default function LoginPage() {
                                     <BottomGradient />
                                 </button>
                             </Link> */}
-                            <button
-                                className="relative group/btn flex space-x-2 items-center justify-center px-4 w-full rounded-md h-12 font-medium shadow-input bg-zinc-950 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
-                            >
-                                <User2 className="w-4 h-4 text-neutral-200" />
-                                <span className="text-neutral-200 text-sm">
-                                    Enter as a guest
-                                </span>
-                                <BottomGradient />
-                            </button>
+                            <Link href="/upload-image">
+                                <button
+                                    className="relative group/btn flex space-x-2 items-center justify-center px-4 w-full rounded-md h-12 font-medium shadow-input bg-zinc-950 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
+                                >
+                                    <User2 className="w-4 h-4 text-neutral-200" />
+                                    <span className="text-neutral-200 text-sm">
+                                        Enter as a guest
+                                    </span>
+                                    <BottomGradient />
+                                </button>
+                            </Link>
 
                             <p className="text-sm text-gray-700 mt-2 text-center">
                                 Do not have an account?{" "} <Link href="/register"><span className="text-zinc-950 underline font-bold">Sign Up</span></Link>

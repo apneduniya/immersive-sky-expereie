@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 
@@ -21,11 +22,13 @@ export default function UploadPage() {
             <ContextMenu>
                 <main className="min-h-dvh max-w-dvw w-full bg-img-bg-8 bg-cover bg-center px-5 md:px-20 py-5">
                     {/* Header (Avatar container) */}
-                    <div className="w-full flex justify-end">
-                        <div className="h-10 w-10 border-2 border-gray-300 rounded-full flex items-center justify-center bg-white overflow-hidden cursor-pointer">
-                            <Image src={"https://static.vecteezy.com/system/resources/previews/005/545/335/large_2x/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg"} height={320} width={320} alt="User avatar" />
+                    <Link href="/profile">
+                        <div className="w-full flex justify-end">
+                            <div className="h-10 w-10 border-2 border-gray-300 rounded-full flex items-center justify-center bg-white overflow-hidden cursor-pointer">
+                                <Image src={"https://static.vecteezy.com/system/resources/previews/005/545/335/large_2x/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg"} height={320} width={320} alt="User avatar" />
+                            </div>
                         </div>
-                    </div>
+                    </Link>
                     {/* Main container */}
                     <div>
                         <h2 className="mt-5 lg:text-3xl text-2xl font-bold">
