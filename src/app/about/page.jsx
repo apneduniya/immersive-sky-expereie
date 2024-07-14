@@ -11,8 +11,8 @@ export default function AboutPage() {
         <>
             <ContextMenu>
                 <main className="min-h-dvh w-full px-5 lg:px-10 py-5 flex items-center justify-between bg-img-bg-6 bg-cover bg-center">
-                    <div className="h-full w-full lg:w-2/3 backdrop-blur-lg bg-white bg-opacity-50 rounded-lg">
-                        <p className="text-lg font-serif text-justify p-5" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+                    <div className="h-full w-full flex items-center justify-center">
+                        <p className="2xl:text-lg md:text-base text-sm font-serif text-justify p-5 w-full lg:w-10/12" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
                             {
                                 !hover
                                     ? <>
@@ -23,24 +23,24 @@ export default function AboutPage() {
                                         language, the common sky reflects on small and vast landscapes and water bodies and
                                         translates into moments, incidents, movements, days, nights, weather, seasons, time, and
                                         epochs. The sky as absorbent, transparent, lucid, reflective, temporal, spatial, and infinite
-                                        presents a sophisticated language. <br />
+                                        presents a sophisticated language. <br /><br />
                                         &apos;Immersive Sky Experience&apos; tries to explore and understand the &apos;sky language&apos; using artificial
                                         intelligence, machine learning technology, data mining, and archiving for climate storytelling and
                                         weather prediction. It forests on a minute-to-minute basis weather changes on specific micro
                                         geo-coordinates and provides reports from windows, streets, villages, panchayat, municipalities,
                                         and small towns - prompting a unique perspective and experience of the Odia language and
-                                        culture, people, and subjectivities. <br />
+                                        culture, people, and subjectivities. <br /><br />
                                         The ISE algorithm analyses environmental disaster images, studies and identifies patterns,
                                         extracts the sky part, composes the metadata, and provides a digital sky experience. ISE stories
                                         are based on ground-level data, collected from our &apos;stations&apos; situated near the coast of the Bay
                                         of Bengal at Bagapatia rehabilitation colony (Kendrapada district), the land erosion site of
-                                        Podampeta (Ganjam district), and the capital city of Bhubaneswar in Odisha. <br />
+                                        Podampeta (Ganjam district), and the capital city of Bhubaneswar in Odisha. <br /><br />
                                         The interactive website enables and facilitates marginal and climate-vulnerable communities
                                         from coastal Odisha, and share environment stories, experiences, and concerns and
                                         sustainably engage with the colloquial perspective on climate change. ISE website also hosts
                                         an &apos;Environment Disaster Image Archive&apos; for the public, which has audiovisual information and
                                         documents on different environmental disasters from Odisha. <br />
-                                        &apos;Immersive Sky Experience&apos; was conceived and created by Paribartana Mohanty <br />
+                                        &apos;Immersive Sky Experience&apos; was conceived and created by Paribartana Mohanty <br /><br />
 
                                         Credit: <br /> Text and Translation by Paribartana Mohanty and Gita Nandan Ballabha Das <br />
                                         Project Assistance and Resouce: Jyoti Ranjan Sahoo, Gita Nandan Ballabha Das, Satyabadi
@@ -76,7 +76,17 @@ export default function AboutPage() {
                                         ପରିବେ ଶ ବିପର୍ଯୟର ଅନେ କ ଫଟୋ ଜନସା ଧା ରଣଙ୍କ ବା ISE-user ଙ୍କ ଦ୍ୱା ରା ସ୍ଵେ ଚ୍ଛା ରେ ISE-website ରେ upload
                                         କରା ଯା ଇଥା ଏ। ଓଡ଼ିଶା ରେ ଘଟିଥିବା ସମସ୍ତ ପ୍ରକା ର ପ୍ରା କୃତିକ ବିପର୍ଯୟ ସମ୍ବନ୍ଧୀ ୟ audio, video, photo, ଏବଂ
                                         documents ସଂ ଗ୍ରହ କରେ ISE, ଯା ହା &apos;Environment Disaster Image Archive&apos; ମା ଧ୍ୟମରେ ଜନସା ଧା ରଣ ଙ୍କ ପା ଇଁ
-                                        ଉପଲବ୍ଧ ।
+                                        ଉପଲବ୍ଧ ।<br />
+                                        ପାରିବାର୍ଟା ମହାନ୍ତି ଏବଂ ଗୀତା ନନ୍ଦନ ବଲାବା ଦାସଙ୍କ ପାଠ୍ୟ ଏବଂ ଅନୁବାଦ <br />
+                                        ପ୍ରକଳ୍ପ ସହାୟତା ଏବଂ ପୁନ o ଉଦ୍ଧାର: ଜ୍ୟୋତି ରଂଜନ ସାହୁ, ଗୀତା ନନ୍ଦନ ବଲାବା ଦାସ, ସତ୍ୟବାଡି
+                                        ବିଶ୍ al <br />
+                                        ଟେକ୍ନୋଲୋଜି ଏବଂ ସହାୟତା: AI ମଡେଲ୍ <br /> ନିର୍ମାଣ କରିବାକୁ ପାଇଥନ୍ ଭାଷା ଏବଂ ପାଇଟର୍ ଲାଇବ୍ରେରୀ |
+                                        ସ୍ୱୀକୃତି: ଅନିଷ ଚେରିୟାନ୍, ଅକ୍ଷୟ ରାଷ୍ଟୋଗୀ, କୁଶ ବାଦୱର, ସମ୍ୱର୍ନା ମହାନ୍ତି,
+                                        ବାହାବାକ୍ ହାସିମି, ଶେନା ରାଘବନ୍, <br /> |
+                                        ଆର୍ଥିକ ଏବଂ ମେଣ୍ଟରସିପ୍ ସମର୍ଥନ:
+                                        ଶାରଜା ଆର୍ଟ ଫାଉଣ୍ଡେସନ୍ ଉତ୍ପାଦନ କାର୍ଯ୍ୟକ୍ରମ 2023 <br /> |
+                                        ପରିବେଶ ପରିବର୍ତ୍ତନ ପାଇଁ ସାଂସ୍କୃତିକ ଏବଂ କଳାତ୍ମକ ପ୍ରତିକ୍ରିୟା ପାଇଁ ପ୍ରିନ୍ସ କ୍ଲଜ୍ ମେଣ୍ଟରସିପ୍ ପୁରସ୍କାର |
+                                        2022-23
                                     </>
                             }
                         </p>

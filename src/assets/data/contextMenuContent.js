@@ -17,9 +17,9 @@ export const contextMenuContent = {
         },
         {
             "id": 3,
-            "text": "Image Archival Page",
+            "text": "Image Archive",
             "odia": "ପରିବେ ଶ ବିପର୍ଯ୍ୟୟ ପ୍ରତିଛବି ଅଭିଲେ ଖା ଗା ର",
-            "link": "/imagearchive"
+            "link": "/image-archive"
         },
         {
             "id": 4,

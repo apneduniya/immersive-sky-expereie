@@ -32,7 +32,7 @@ function Menu() {
 
     return (
         <>
-            <ContextMenuContent className="backdrop-blur-lg bg-white bg-opacity-50 rounded-lg">
+            <ContextMenuContent className="bg-transparent border-none shadow-none">
                 {
                     contextMenuContent.links.map((item, index) => (
                         /* INFO: 1ST NAVLINK WILL BE CHANGED IF ITS ABOUT PAGE (/about) OTHERWISE RESPECTED CONTENT WILL GO */

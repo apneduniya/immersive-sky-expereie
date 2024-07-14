@@ -58,13 +58,14 @@ export default function LoginPage() {
                                     >
                                         Accept terms and conditions
                                     </label>
-                                    <p className="text-sm text-gray-700">
+                                    <p className="text-sm text-white">
                                         You agree to our Terms of Service and Privacy Policy.
                                     </p>
                                 </div>
                             </div>
-                            <button className="mt-4 inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2" type="submit">
-                                Sign In
+                            <button className="relative z-10 h-12 w-full bg- rounded-lg flex items-center justify-center" type="submit">
+                                <span className="z-30">Sign In</span>
+                                <div className="absolute z-20 h-full w-full rounded-lg blur-sm bg-white opacity-50" />
                             </button>
 
                             <div className="bg-gradient-to-r from-transparent via-neutral-500  to-transparent my-8 h-[1px] w-full" />
