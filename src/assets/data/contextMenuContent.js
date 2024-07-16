@@ -7,7 +7,7 @@ export const contextMenuContent = {
             "id": 1,
             "text": "Immersive Sky Experience",
             "odia": "ଏମରସିଭ ସ୍କା ଏ ଏକ୍ସପେ ରିଏନ୍ସ",
-            "link": "/about"
+            "link": "/"
         },
         {
             "id": 2,
