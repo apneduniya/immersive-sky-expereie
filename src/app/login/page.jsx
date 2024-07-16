@@ -87,7 +87,7 @@ export default function LoginPage() {
                                 </button>
                             </Link> */}
                         </form>
-                        <Link href="/">
+                        <Link href="/upload-image">
                             {/* <button
                                 className="relative group/btn flex space-x-2 items-center justify-center px-4 w-full rounded-md h-12 font-medium shadow-input bg-zinc-950 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
                             >
