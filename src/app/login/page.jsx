@@ -7,12 +7,15 @@ import BottomGradient from "@/components/common/BottomGradient";
 import { User2 } from "lucide-react";
 import ContextMenu from "@/components/layout/NavContextMenu";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [terms, setTerms] = useState(false);
+
+    const router = useRouter();
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -38,7 +41,8 @@ export default function LoginPage() {
         // console.log("Email:", email);
         // console.log("Password", password);
 
-        window.location.href = "/upload-image";
+        // window.location.href = "/upload-image";
+        router.push("/upload-image");
     }
 
     return (
@@ -83,8 +87,8 @@ export default function LoginPage() {
                                 </button>
                             </Link> */}
                         </form>
-                        <Link href="/upload-image">
-                            <button
+                        <Link href="/">
+                            {/* <button
                                 className="relative group/btn flex space-x-2 items-center justify-center px-4 w-full rounded-md h-12 font-medium shadow-input bg-zinc-950 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
                             >
                                 <User2 className="w-4 h-4 text-neutral-200" />
@@ -92,6 +96,10 @@ export default function LoginPage() {
                                     Enter as a guest
                                 </span>
                                 <BottomGradient />
+                            </button> */}
+                            <button className="relative z-10 h-12 w-full bg- rounded-lg flex items-center justify-center">
+                                <span className="z-30">Enter as a guest</span>
+                                <div className="absolute z-20 h-full w-full rounded-lg blur-sm bg-white opacity-50" />
                             </button>
                         </Link>
 

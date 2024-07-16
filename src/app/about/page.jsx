@@ -12,7 +12,7 @@ export default function AboutPage() {
             <ContextMenu>
                 <main className="min-h-dvh w-full px-5 lg:px-10 py-5 flex items-center justify-between bg-img-bg-6 bg-cover bg-center">
                     <div className="h-full w-full flex items-center justify-center">
-                        <p className="2xl:text-lg md:text-base text-sm font-serif text-justify p-5 w-full lg:w-10/12" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+                        <p className="md:text-base text-sm font-serif text-justify p-5 w-full lg:w-10/12" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
                             {
                                 !hover
                                     ? <>

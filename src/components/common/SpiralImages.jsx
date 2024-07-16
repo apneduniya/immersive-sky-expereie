@@ -7,6 +7,7 @@ import { useEffect, useState, useRef } from 'react';
 const SpiralImages = ({ images }) => {
     const containerRef = useRef(null);
     const [dimensions, setDimensions] = useState({ width: 0, height: 0, radius: 0 });
+    const randomIndex = Math.floor(Math.random() * images.length);
 
     useEffect(() => {
         if (containerRef.current) {
@@ -19,7 +20,7 @@ const SpiralImages = ({ images }) => {
 
 
     const randomizePosition = (index, trails) => {
-        if (index === 0) {
+        if (randomIndex === index) {
             return { x: dimensions.width / 2, y: dimensions.height / 2 };
         }
 

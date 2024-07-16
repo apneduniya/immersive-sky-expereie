@@ -35,14 +35,14 @@ function Menu() {
             <ContextMenuContent className="bg-transparent border-none shadow-none">
                 {
                     contextMenuContent.links.map((item, index) => (
-                        /* INFO: 1ST NAVLINK WILL BE CHANGED IF ITS ABOUT PAGE (/about) OTHERWISE RESPECTED CONTENT WILL GO */
+                        /* INFO: 1ST NAVLINK WILL BE CHANGED TO `/about` IF ITS HOME PAGE (/) OTHERWISE RESPECTED LINK WILL GO */
                         item.id === 1
-                            ? pathName === "/about" ? <MenuItem key={index} item={
+                            ? pathName === "/" ? <MenuItem key={index} item={
                                 {
                                     "id": 1,
                                     "text": item.text,
                                     "odia": item.odia,
-                                    "link": "/"
+                                    "link": "/about"
                                 }
                             } /> : <MenuItem key={index} item={item} />
                             : <MenuItem key={index} item={item} />

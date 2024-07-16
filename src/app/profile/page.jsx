@@ -1,4 +1,5 @@
 import ContextMenu from "@/components/layout/NavContextMenu";
+import { IconPlus } from "@tabler/icons-react";
 
 import Image from "next/image";
 
@@ -36,7 +37,10 @@ export default function ProfilePage() {
                     </div>
                     { /* USER'S UPLOAD */}
                     <div className="mt-10 lg:mt-20">
-                        <h2 className="text-2xl font-bold lg:text-left text-center">My Uploads</h2>
+                        <div className="flex gap-10 items-center">
+                            <h2 className="text-2xl font-bold lg:text-left text-center">My Uploads</h2>
+                            <IconPlus size={24} className="cursor-pointer" />
+                        </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5 gap-y-10 mt-16 place-items-center">
                             {
                                 uploads.map((upload, index) => (

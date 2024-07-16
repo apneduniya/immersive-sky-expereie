@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import ContextMenu from "@/components/layout/NavContextMenu";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 
 export default function RegisterPage() {
@@ -12,6 +13,8 @@ export default function RegisterPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+
+    const router = useRouter();
 
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
@@ -32,24 +35,26 @@ export default function RegisterPage() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!username || !email || !password || !confirmPassword) {
-            alert("Please fill in all fields");
-            return;
-        }
+        // if (!username || !email || !password || !confirmPassword) {
+        //     alert("Please fill in all fields");
+        //     return;
+        // }
 
-        if (password.length < 8) {
-            alert("Password must be at least 8 characters");
-            return;
-        }
+        // if (password.length < 8) {
+        //     alert("Password must be at least 8 characters");
+        //     return;
+        // }
 
-        if (password !== confirmPassword) {
-            alert("Passwords do not match");
-            return;
-        }
+        // if (password !== confirmPassword) {
+        //     alert("Passwords do not match");
+        //     return;
+        // }
 
-        console.log("Username:", username);
-        console.log("Email:", email);
-        console.log("Password", password);
+        // console.log("Username:", username);
+        // console.log("Email:", email);
+        // console.log("Password", password);
+
+        router.push("/upload-image");
     }
 
     return (
@@ -58,13 +63,17 @@ export default function RegisterPage() {
                 <main className="min-h-dvh max-w-dvw w-full flex items-center justify-center bg-img-bg-8 bg-cover bg-center">
                     <div>
                         <form className="flex flex-col gap-4 px-5 lg:px-10 py-5 w-dvw max-w-[520px]" onSubmit={handleSubmit}>
-                            <Input type="text" placeholder="Username" onChange={handleUsernameChange} value={username} className="w-full h-12" />
-                            <Input type="email" placeholder="Email" onChange={handleEmailChange} value={email} className="w-full h-12" />
-                            <Input type="password" placeholder="Password" onChange={handlePasswordChange} value={password} className="w-full h-12" />
-                            <Input type="password" placeholder="Confirm Password" onChange={handleConfirmPasswordChange} value={confirmPassword} className="w-full h-12" />
+                            <Input type="text" placeholder="Username" onChange={handleUsernameChange} value={username} className="w-full h-12 text-center" />
+                            <Input type="email" placeholder="Email" onChange={handleEmailChange} value={email} className="w-full h-12 text-center" />
+                            <Input type="password" placeholder="Password" onChange={handlePasswordChange} value={password} className="w-full h-12 text-center" />
+                            <Input type="password" placeholder="Confirm Password" onChange={handleConfirmPasswordChange} value={confirmPassword} className="w-full h-12 text-center" />
 
-                            <button className="mt-4 inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2">
+                            {/* <button className="mt-4 inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2">
                                 Sign Up
+                            </button> */}
+                            <button className="relative z-10 h-12 w-full bg- rounded-lg flex items-center justify-center" type="submit">
+                                <span className="z-30">Sign Up</span>
+                                <div className="absolute z-20 h-full w-full rounded-lg blur-sm bg-white opacity-50" />
                             </button>
 
                             <p className="text-sm text-gray-700 mt-2 text-center">
