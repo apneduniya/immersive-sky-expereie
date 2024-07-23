@@ -42,7 +42,7 @@ export default function TamarindSkyPage() {
 						}
 					</div>
 					<div className="relative flex items-center justify-center flex-col gap-12 w-4/5">
-						<Image src={tamarindImg} alt="tamarind" className="lg:w-[680px] md:w-96 w-60 select-none cursor-pointer" onClick={getImage} />
+						<Image src={tamarindImg} alt="tamarind" className="lg:w-[620px] md:w-96 w-60 select-none cursor-pointer" onClick={getImage} />
 						<p className="lg:w-[740px] w-full text-center cursor-default 2xl:text-2xl xl:text-2xl lg:text-2xl md:text-xl text-lg self-end" onMouseEnter={() => setTextHover(true)} onMouseLeave={() => setTextHover(false)}>
 							{
 								textHover ? "ସମୁଦ୍ର ଖାଉଛି ମାଟି । ମାଟି ଖାଉଛି ନୋଳିଆ । ନୋଳିଆ ଖାଉଛି ମାଛ । ମାଛ ଖାଉଛି ଜାଲି । ଜାଲି ଖାଉଛି ସମୁଦ୍ର ।" :
