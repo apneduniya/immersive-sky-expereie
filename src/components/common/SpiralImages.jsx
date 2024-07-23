@@ -57,7 +57,7 @@ const SpiralImages = ({ images }) => {
                         alt={`spiral-img-${index}`}
                         height={300}
                         width={300}
-                        className="absolute transition-transform duration-500 transform hover:scale-110 h-44 w-72 rounded-xl"
+                        className="absolute transition-transform duration-500 transform hover:scale-110 h-44 w-72"
                         style={{
                             transform: `translate(-50%, -50%)`,
                             left: `${x}px`,
