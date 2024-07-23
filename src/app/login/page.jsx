@@ -51,14 +51,14 @@ export default function LoginPage() {
                 <main className="min-h-dvh max-w-dvw w-full flex items-center justify-center bg-img-bg-8 bg-cover bg-center">
                     <div className="px-5 lg:px-10 py-5 w-dvw max-w-[520px]">
                         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-                            <Input type="email" placeholder="Email/Phone" onChange={handleEmailChange} value={email} className="w-full h-12 text-center bg-transparent border-none placeholder:text-black" />
-                            <Input type="password" placeholder="Password" onChange={handlePasswordChange} value={password} className="w-full h-12 text-center bg-transparent border-none placeholder:text-black" />
+                            <Input type="email" placeholder="Email/Phone" onChange={handleEmailChange} value={email} className="w-full h-12 text-center bg-transparent placeholder:text-black border border-white text-xs" />
+                            <Input type="password" placeholder="Password" onChange={handlePasswordChange} value={password} className="w-full h-12 text-center bg-transparent placeholder:text-black border border-white text-xs" />
                             <div className="mt-4 items-top flex space-x-2">
                                 <Checkbox id="terms1" checked={terms} onClick={() => setTerms(!terms)} />
                                 <div className="grid gap-1.5 leading-none">
                                     <label
                                         htmlFor="terms1"
-                                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-white"
+                                        className="text-sm text-center font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-white"
                                     >
                                         Accept terms and conditions
                                     </label>
