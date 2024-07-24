@@ -23,9 +23,9 @@ export const contextMenuContent = {
         },
         {
             "id": 4,
-            "text": "Login",
+            "text": "Login / Register",
             "odia": "ରେ ଜିଷ୍ଟର",
-            "link": "/login"
+            "link": "/register"
         }
     ]
 }
