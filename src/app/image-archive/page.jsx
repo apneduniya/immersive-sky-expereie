@@ -1,8 +1,9 @@
-import SpiralImages from "@/components/common/SpiralImages";
+import ScatteredImages from "@/components/common/ScatteredImages";
 import ContextMenu from "@/components/layout/NavContextMenu";
 
 
 export default function ImageArchivePage() {
+
     // const images = [
     //     "https://images.unsplash.com/photo-1476231682828-37e571bc172f?q=80&w=3474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     //     "https://images.unsplash.com/photo-1464457312035-3d7d0e0c058e?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -22,7 +23,7 @@ export default function ImageArchivePage() {
         <>
             <ContextMenu>
                 <main className="min-h-dvh w-full px-5 lg:px-10 py-5 bg-img-bg-5 bg-cover bg-center overflow-hidden flex items-center justify-center">
-                    <SpiralImages images={images} />
+                    <ScatteredImages images={images} />
                 </main>
             </ContextMenu>
         </>
