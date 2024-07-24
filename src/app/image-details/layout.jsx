@@ -4,11 +4,11 @@ import "@/styles/globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Upload",
+  title: "Image Details",
   description: "",
 };
 
-export default function UploadLayout({ children }) {
+export default function ImagwDetailLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>

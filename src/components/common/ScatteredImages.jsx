@@ -31,14 +31,14 @@ const ScatteredImages = ({ images }) => {
             {images.map((src, index) => {
 
                 return (
-                    <Link key={index} href="/image-detail">
+                    <Link key={index} href="/image-details">
                         <Image
                             // src={src}
                             src={"https://picsum.photos/300/200" + `?random=${index}`}
                             alt={`spiral-img-${index}`}
                             height={300}
                             width={300}
-                            className="absolute transition-transform duration-500 transform hover:scale-110 h-44 w-72"
+                            className="absolute transition-transform duration-500 transform hover:scale-110 h-44 w-72 cursor-pointer"
                             style={{
                                 transform: `translate(-50%, -50%)`,
                                 left: `${positions[index]?.x}px`,
