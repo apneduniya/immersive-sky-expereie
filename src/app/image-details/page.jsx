@@ -1,97 +1,165 @@
-"use client";
-
+import InlineFormValue from "@/components/common/InlineFormValue";
 import ContextMenu from "@/components/layout/NavContextMenu";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import crossIcon from "@/assets/icons/cross.svg";
 
 
+
 export default function ImageDetailsPage() {
-    const [details] = useState({
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, ultricies nunc. Nulla facilisi. Nullam nec nunc nec nunc ultricies nunc. Nulla facilisi. Nullam nec nunc nec nunc ultricies nunc.",
-        disaster: "Earthquake",
-        year: "2024",
-        place: "USA",
-        longitude: "23.456",
-        latitude: "-103.892",
-        day: "Tuesday",
-        date: "2023-12-12",
-        time: "12:00 PM",
-        fileName: "demo.jpg",
-        fileSize: "2.3 MB",
-        fileType: "JPEG",
-        archival: "Archival",
-        dimensions: "1920x1080",
-        cameraModel: "Canon EOS 5D Mark IV",
-        exposureTime: "2.5s",
-        iso: "ISO 100",
-        focalLength: "50mm"
-    });
+    const randomIndex = Math.floor(Math.random() * 10);
 
     return (
         <>
             <ContextMenu>
-                <main className="min-h-dvh max-w-dvw w-full bg-img-bg-8 bg-cover bg-center px-5 md:px-20 py-5">
+                <main className="min-h-dvh max-w-dvw w-full bg-img-bg-9 bg-cover bg-center px-5 md:px-20 py-10">
                     {/* Header */}
                     <Link href="/image-archive">
                         <div className="w-full flex justify-end">
                             <div className="h-10 w-10 border-2 border-black rounded-full flex items-center justify-center overflow-hidden cursor-pointer">
-                                <Image src={crossIcon} height={320} width={320} alt="User avatar" />
+                                <Image src={crossIcon} alt="cross-icon" width={24} height={24} />
                             </div>
                         </div>
                     </Link>
-                    {/* Main container */}
-                    <div>
-                        <h2 className="mt-5 lg:text-3xl text-2xl font-bold">
-                            Image Details
-                        </h2>
-                        <div className="mt-12 flex justify-between xl:flex-row flex-col items-center xl:items-start gap-10">
-                            {/* Image */}
-                            <div className="xl:max-w-[40%] xl:w-fit w-full flex flex-col">
-                                <Image src={"https://images.unsplash.com/photo-1476231682828-37e571bc172f?q=80&w=3474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} height={500} width={500} alt="User upload" className="rounded-xl h-72 object-cover flex-shrink-0 self-center" />
-                                <div className="grid w-full gap-1.5 mt-10">
-                                    <p>
-                                        {details.description}
-                                    </p>
+                    {/* Desktop */}
+                    <div className="h-full w-full 2xl:flex flex-col items-center gap-10 hidden">
+                        {/* Top container */}
+                        <div className="w-full flex flex-col items-center gap-8">
+                            {/* First container */}
+                            <div className="flex w-10/12 justify-between">
+                                {/* Left */}
+                                <div className="w-fit flex flex-col gap-5">
+                                    <div className="flex justify-between">
+                                        <InlineFormValue label="Disaster" inputClassName="h-6 w-20" />
+                                        <InlineFormValue label="Event" inputClassName="h-6 w-20" />
+                                    </div>
+                                    <div className="flex gap-3">
+                                        <InlineFormValue label="Date" inputClassName="h-6 w-20" />
+                                        <InlineFormValue label="Day" inputClassName="h-6 w-20" />
+                                        <InlineFormValue label="Time" inputClassName="h-6 w-20" />
+                                        <InlineFormValue label="Duration" inputClassName="h-6 w-20" />
+                                    </div>
+                                </div>
+                                {/* Right */}
+                                <div className="w-fit flex flex-col gap-5">
+                                    <div className="flex justify-between gap-32">
+                                        <InlineFormValue label="Place" inputClassName="h-6 w-20" />
+                                        <InlineFormValue label="Affected Areas" inputClassName="h-6 w-20" />
+                                    </div>
+                                    <div className="flex gap-3">
+                                        <InlineFormValue label="Geolocation (Longitude/Latitude)" inputClassName="h-6 w-20" />
+                                    </div>
                                 </div>
                             </div>
-                            {/* Image details form */}
-                            <div className="xl:max-w-[50%] w-full">
-                                <div className="w-full flex justify-between flex-col sm:flex-row gap-5">
-                                    <p className="lg:max-w-[30%] text-center w-full">{details.disaster}</p>
-                                    <p className="lg:max-w-[30%] text-center w-full">{details.year}</p>
-                                    <p className="lg:max-w-[30%] text-center w-full">{details.place}</p>
+                            {/* Second container */}
+                            <div className="flex gap-32 w-11/12 justify-end">
+                                <InlineFormValue label="Device" inputClassName="h-6 w-20" />
+                                <InlineFormValue label="Camera Model" inputClassName="h-6 w-20" />
+                            </div>
+                        </div>
+                        {/* Middle container */}
+                        <div className="w-full flex items-center justify-center">
+                            {/* Left container */}
+                            <div className="w-1/4 flex flex-col -rotate-90">
+                                <div className="self-end flex flex-col gap-2">
+                                    <InlineFormValue label="Device" inputClassName="h-6 w-20" />
+                                    <InlineFormValue label="Camera Model" inputClassName="h-6 w-20" />
+                                    <InlineFormValue label="Software" inputClassName="h-6 w-20" />
                                 </div>
-                                <div className="w-full flex justify-between mt-5 flex-col sm:flex-row gap-5">
-                                    <p className="lg:max-w-[30%] text-center w-full">{details.longitude}° longitude</p>
-                                    <p className="lg:max-w-[30%] text-center w-full">{details.latitude}° latitude</p>
+                                <div className="self-start flex flex-col gap-2">
+                                    <InlineFormValue label="Aspect ratio" inputClassName="h-6 w-20" />
+                                    <InlineFormValue label="Resolution" inputClassName="h-6 w-20" />
                                 </div>
-                                <div className="w-full flex justify-between mt-5 flex-col sm:flex-row gap-5">
-                                    <p className="lg:max-w-[30%] text-center w-full">{details.day}</p>
-                                    <p className="lg:max-w-[30%] text-center w-full">{details.date}</p>
-                                    <p className="lg:max-w-[30%] text-center w-full">{details.time}</p>
-                                </div>
-                                <div className="w-full flex justify-between mt-5 flex-col sm:flex-row gap-5">
-                                    <p className="lg:max-w-[30%] text-center w-full">{details.fileName}</p>
-                                    <p className="lg:max-w-[30%] text-center w-full">{details.fileSize}</p>
-                                    <p className="lg:max-w-[30%] text-center w-full">{details.fileType}</p>
-                                </div>
-                                <div className="w-full flex justify-between mt-5 flex-col sm:flex-row gap-5">
-                                    <p className="lg:max-w-[30%] text-center w-full">{details.archival}</p>
-                                    <p className="lg:max-w-[30%] text-center w-full">{details.dimensions}</p>
-                                    <p className="lg:max-w-[30%] text-center w-full">{details.cameraModel}</p>
-                                </div>
-                                <div className="w-full flex justify-between mt-5 flex-col sm:flex-row gap-5">
-                                    <p className="lg:max-w-[30%] text-center w-full">{details.exposureTime}</p>
-                                    <p className="lg:max-w-[30%] text-center w-full">{details.iso}</p>
-                                    <p className="lg:max-w-[30%] text-center w-full">{details.focalLength}</p>
+                                <div className="self-end flex flex-col gap-2">
+                                    <InlineFormValue label="ISO" inputClassName="h-6 w-20" />
+                                    <InlineFormValue label="Shutter Speed" inputClassName="h-6 w-20" />
+                                    <InlineFormValue label="Aperture" inputClassName="h-6 w-20" />
                                 </div>
                             </div>
+                            <Image src={`https://picsum.photos/500/300?random=${randomIndex}`} alt="upload-image" width={400} height={400} className="w-[900px]" />
+                            {/* Right container */}
+                            <div className="w-1/4 flex flex-col rotate-90">
+                                <div className="self-start flex flex-col gap-2">
+                                    <InlineFormValue label="Photo" inputClassName="h-6 w-20" />
+                                    <InlineFormValue label="Video" inputClassName="h-6 w-20" />
+                                    <InlineFormValue label="Audio" inputClassName="h-6 w-20" />
+                                    <InlineFormValue label="Sound" inputClassName="h-6 w-20" />
+                                </div>
+                                <div className="self-end flex flex-col gap-2">
+                                    <InlineFormValue label="File Name" inputClassName="h-6 w-20" />
+                                    <InlineFormValue label="File Size" inputClassName="h-6 w-20" />
+                                    <InlineFormValue label="File Type" inputClassName="h-6 w-20" />
+                                </div>
+                                <div className="self-start flex flex-col gap-2">
+                                    <InlineFormValue label="Archival" inputClassName="h-6 w-20" />
+                                    <InlineFormValue label="Document" inputClassName="h-6 w-20" />
+                                </div>
+                            </div>
+                        </div>
+                        {/* Bottom container */}
+                        <div className="w-full flex flex-col items-center gap-2 px-20">
+                            {/* First container */}
+                            <div className="flex w-[900px] gap-10 justify-center px-5">
+                                <InlineFormValue label="Title" inputClassName="h-6" className="w-full" />
+                                <button className="bg-transparent border-none font-bold italic uppercase">
+                                    Upload
+                                </button>
+                            </div>
+                            {/* Second container */}
+                            <div className="flex w-full justify-between">
+                                {/* Left */}
+                                <div className="w-fit flex flex-col gap-2">
+                                    <InlineFormValue label="Name" inputClassName="h-6 w-20" />
+                                    <InlineFormValue label="Biography" inputClassName="h-20 w-[200px]" />
+                                </div>
+                                {/* Middle */}
+                                <div className="w-[900px] px-5 flex flex-col gap-5">
+                                    <InlineFormValue label="Forcast and Stories" inputClassName="h-20 w-full" />
+                                    <InlineFormValue label="Keywords" inputClassName="h-6 w-full" />
+                                </div>
+                                {/* Right */}
+                                <div className="w-fit flex flex-col items-end gap-2">
+                                    <InlineFormValue label="Image Source" inputClassName="h-6 w-20" />
+                                    <InlineFormValue label="Image Copyright" inputClassName="h-6 w-20" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/* Small Screen Laptops, Tablets & Mobiles */}
+                    <div className="h-full w-full 2xl:hidden flex flex-col items-center gap-10 px-5 md:px-20 py-5">
+                        <Image src={`https://picsum.photos/500/300?random=${randomIndex}`} alt="upload-image" width={400} height={400} className="w-full" />
+                        <div className="w-full flex flex-col gap-5">
+                            <InlineFormValue label="Title" inputClassName="h-8 w-full max-w-[400px]" />
+                            <InlineFormValue label="Disaster" inputClassName="h-8 w-full max-w-[400px]" />
+                            <InlineFormValue label="Event" inputClassName="h-8 w-full max-w-[400px]" />
+                            <InlineFormValue label="Date" inputClassName="h-8 w-full max-w-[400px]" />
+                            <InlineFormValue label="Day" inputClassName="h-8 w-full max-w-[400px]" />
+                            <InlineFormValue label="Time" inputClassName="h-8 w-full max-w-[400px]" />
+                            <InlineFormValue label="Duration" inputClassName="h-8 w-full max-w-[400px]" />
+                            <InlineFormValue label="Place" inputClassName="h-8 w-full max-w-[400px]" />
+                            <InlineFormValue label="Affected Areas" inputClassName="h-8 w-full max-w-[400px]" />
+                            <InlineFormValue label="Geolocation (Longitude/Latitude)" inputClassName="h-8 w-full max-w-[400px]" />
+                            <InlineFormValue label="Device" inputClassName="h-8 w-full max-w-[400px]" />
+                            <InlineFormValue label="Camera Model" inputClassName="h-8 w-full max-w-[400px]" />
+                            <InlineFormValue label="Name" inputClassName="h-8 w-full max-w-[400px]" />
+                            <InlineFormValue label="Biography" inputClassName="h-20 w-full max-w-[400px]" />
+                            <InlineFormValue label="Forcast and Stories" inputClassName="h-20 w-full max-w-[400px]" />
+                            <InlineFormValue label="Keywords" inputClassName="h-8 w-full max-w-[400px]" />
+                            <InlineFormValue label="Image Source" inputClassName="h-8 w-full max-w-[400px]" />
+                            <InlineFormValue label="Image Copyright" inputClassName="h-8 w-full max-w-[400px]" />
+                            <button className="bg-transparent border-none font-bold italic uppercase">
+                                Upload
+                            </button>
                         </div>
                     </div>
                 </main>
             </ContextMenu>
         </>
-    );
+    )
 }
+
+
+
+
+
+

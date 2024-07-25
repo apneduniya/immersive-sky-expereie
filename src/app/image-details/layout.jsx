@@ -8,7 +8,7 @@ export const metadata = {
   description: "",
 };
 
-export default function ImageDetailLayout({ children }) {
+export default function ImageDetailsLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
