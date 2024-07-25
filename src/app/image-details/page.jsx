@@ -4,6 +4,8 @@ import ContextMenu from "@/components/layout/NavContextMenu";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import crossIcon from "@/assets/icons/cross.svg";
+
 
 export default function ImageDetailsPage() {
     const [details] = useState({
@@ -35,8 +37,7 @@ export default function ImageDetailsPage() {
                     <Link href="/image-archive">
                         <div className="w-full flex justify-end">
                             <div className="h-10 w-10 border-2 border-black rounded-full flex items-center justify-center overflow-hidden cursor-pointer">
-                                {/* <Image src={"https://static.vecteezy.com/system/resources/previews/005/545/335/large_2x/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg"} height={320} width={320} alt="User avatar" /> */}
-                                <span className="text-black font-bold text-xl">x</span>
+                                <Image src={crossIcon} height={320} width={320} alt="User avatar" />
                             </div>
                         </div>
                     </Link>
