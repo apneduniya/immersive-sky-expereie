@@ -66,7 +66,12 @@ export default function UploadPage() {
                                     <InlineLabelInput label="Aperture" inputClassName="h-6 w-20" />
                                 </div>
                             </div>
-                            <Image src={`https://picsum.photos/500/300?random=${randomIndex}`} alt="upload-image" width={400} height={400} className="w-[900px]" />
+                            <div className="flex items-end">
+                                <Image src={`https://picsum.photos/500/300?random=${randomIndex}`} alt="upload-image" width={400} height={400} className="w-[900px]" />
+                                <button className="bg-transparent border-none font-bold italic uppercase -rotate-90 mb-5">
+                                    Delete
+                                </button>
+                            </div>
                             {/* Right container */}
                             <div className="w-1/4 flex flex-col rotate-90">
                                 <div className="self-start flex flex-col gap-2">
@@ -87,31 +92,31 @@ export default function UploadPage() {
                             </div>
                         </div>
                         {/* Bottom container */}
-                        <div className="w-full flex flex-col items-center gap-2 px-20">
-                            {/* First container */}
-                            <div className="flex w-[900px] gap-10 justify-center px-5">
-                                <InlineLabelInput label="Title" inputClassName="h-6" className="w-full" />
-                                <button className="bg-transparent border-none font-bold italic uppercase">
-                                    Upload
-                                </button>
+                        <div className="flex w-full justify-between">
+                            {/* Left */}
+                            <div className="mt-12 w-fit flex flex-col gap-2">
+                                <InlineLabelInput label="Name" inputClassName="h-6 w-20" />
+                                <InlineLabelTextarea label="Biography" inputClassName="h-20 w-[200px]" />
                             </div>
-                            {/* Second container */}
-                            <div className="flex w-full justify-between">
-                                {/* Left */}
-                                <div className="w-fit flex flex-col gap-2">
-                                    <InlineLabelInput label="Name" inputClassName="h-6 w-20" />
-                                    <InlineLabelTextarea label="Biography" inputClassName="h-20 w-[200px]" />
+                            {/* Middle */}
+                            <div className="w-[900px] -ml-36 px-10 flex flex-col gap-5 items-center">
+                                {/* First container */}
+                                <div className="flex w-full gap-10 justify-center">
+                                    <InlineLabelInput label="Title" inputClassName="h-6" className="w-full" />
+                                    <button className="bg-transparent border-none font-bold italic uppercase">
+                                        Upload
+                                    </button>
                                 </div>
-                                {/* Middle */}
-                                <div className="w-[900px] px-5 flex flex-col gap-5">
+                                {/* Second container */}
+                                <div className="w-full flex flex-col gap-5">
                                     <InlineLabelTextarea label="Forcast and Stories" inputClassName="h-20 w-full" />
                                     <InlineLabelInput label="Keywords" inputClassName="h-6 w-full" />
                                 </div>
-                                {/* Right */}
-                                <div className="w-fit flex flex-col items-end gap-2">
-                                    <InlineLabelInput label="Image Source" inputClassName="h-6 w-20" />
-                                    <InlineLabelInput label="Image Copyright" inputClassName="h-6 w-20" />
-                                </div>
+                            </div>
+                            {/* Right */}
+                            <div className="mt-12 w-fit flex flex-col items-end gap-2">
+                                <InlineLabelInput label="Image Source" inputClassName="h-6 w-20" />
+                                <InlineLabelInput label="Image Copyright" inputClassName="h-6 w-20" />
                             </div>
                         </div>
                     </div>

@@ -101,9 +101,6 @@ export default function ImageDetailsPage() {
                             {/* First container */}
                             <div className="flex w-[900px] gap-10 justify-center px-5">
                                 <InlineFormValue label="Title" inputClassName="h-6" className="w-full" />
-                                <button className="bg-transparent border-none font-bold italic uppercase">
-                                    Upload
-                                </button>
                             </div>
                             {/* Second container */}
                             <div className="flex w-full justify-between">
