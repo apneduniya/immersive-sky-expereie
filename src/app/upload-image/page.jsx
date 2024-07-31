@@ -10,9 +10,9 @@ export default function UploadPage() {
     return (
         <>
             <ContextMenu>
-                <main className="min-h-dvh max-w-dvw w-full bg-img-bg-9 bg-cover bg-center px-5 md:px-20 py-10">
+                <main className="min-h-dvh max-w-dvw w-full bg-img-bg-9 bg-cover bg-center px-5 md:px-20 py-10 flex">
                     {/* Desktop */}
-                    <div className="h-full w-full 2xl:flex flex-col items-center gap-10 hidden">
+                    <div className="h-full w-full xl:flex flex-col items-center gap-5 hidden self-center">
                         {/* Top container */}
                         <div className="w-full flex flex-col items-center gap-8">
                             {/* First container */}
@@ -67,7 +67,7 @@ export default function UploadPage() {
                                 </div>
                             </div>
                             <div className="flex items-end">
-                                <Image src={`https://picsum.photos/500/300?random=${randomIndex}`} alt="upload-image" width={400} height={400} className="w-[900px]" />
+                                <Image src={`https://picsum.photos/500/300?random=${randomIndex}`} alt="upload-image" width={400} height={400} className="w-[700px]" />
                                 <button className="bg-transparent border-none font-bold italic uppercase -rotate-90 mb-5">
                                     Delete
                                 </button>
@@ -99,7 +99,7 @@ export default function UploadPage() {
                                 <InlineLabelTextarea label="Biography" inputClassName="h-20 w-[200px]" />
                             </div>
                             {/* Middle */}
-                            <div className="w-[900px] -ml-36 px-10 flex flex-col gap-5 items-center">
+                            <div className="w-[750px] -ml-36 px-10 flex flex-col gap-5 items-center">
                                 {/* First container */}
                                 <div className="flex w-full gap-10 justify-center">
                                     <InlineLabelInput label="Title" inputClassName="h-6" className="w-full" />
@@ -121,7 +121,7 @@ export default function UploadPage() {
                         </div>
                     </div>
                     {/* Small Screen Laptops, Tablets & Mobiles */}
-                    <div className="h-full w-full 2xl:hidden flex flex-col items-center gap-10 px-5 md:px-20 py-5">
+                    <div className="h-full w-full xl:hidden flex flex-col items-center gap-10 px-5 md:px-20 py-5">
                         <Image src={`https://picsum.photos/500/300?random=${randomIndex}`} alt="upload-image" width={400} height={400} className="w-full" />
                         <div className="w-full flex flex-col gap-5">
                             <InlineLabelInput label="Title" inputClassName="h-8 w-full max-w-[400px]" />

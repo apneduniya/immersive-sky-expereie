@@ -12,17 +12,19 @@ export default function ImageDetailsPage() {
     return (
         <>
             <ContextMenu>
-                <main className="min-h-dvh max-w-dvw w-full bg-img-bg-9 bg-cover bg-center px-5 md:px-20 py-10">
+                <main className="relative min-h-dvh max-w-dvw w-full bg-img-bg-9 bg-cover bg-center px-5 md:px-20 py-10 flex">
                     {/* Header */}
-                    <Link href="/image-archive">
-                        <div className="w-full flex justify-end">
-                            <div className="h-10 w-10 border-2 border-black rounded-full flex items-center justify-center overflow-hidden cursor-pointer">
-                                <Image src={crossIcon} alt="cross-icon" width={24} height={24} />
+                    <div className="absolute top-7 right-10">
+                        <Link href="/image-archive">
+                            <div className="w-full flex justify-end">
+                                <div className="h-14 w-14 flex items-center justify-center overflow-hidden cursor-pointer">
+                                    <Image src={crossIcon} alt="cross-icon" width={36} height={36} />
+                                </div>
                             </div>
-                        </div>
-                    </Link>
+                        </Link>
+                    </div>
                     {/* Desktop */}
-                    <div className="h-full w-full 2xl:flex flex-col items-center gap-10 hidden">
+                    <div className="h-full w-full xl:flex flex-col items-center gap-5 hidden self-center">
                         {/* Top container */}
                         <div className="w-full flex flex-col items-center gap-8">
                             {/* First container */}
@@ -76,7 +78,7 @@ export default function ImageDetailsPage() {
                                     <InlineFormValue label="Aperture" inputClassName="h-6 w-20" />
                                 </div>
                             </div>
-                            <Image src={`https://picsum.photos/500/300?random=${randomIndex}`} alt="upload-image" width={400} height={400} className="w-[900px]" />
+                            <Image src={`https://picsum.photos/500/300?random=${randomIndex}`} alt="upload-image" width={400} height={400} className="w-[700px]" />
                             {/* Right container */}
                             <div className="w-1/4 flex flex-col rotate-90">
                                 <div className="self-start flex flex-col gap-2">
@@ -97,33 +99,33 @@ export default function ImageDetailsPage() {
                             </div>
                         </div>
                         {/* Bottom container */}
-                        <div className="w-full flex flex-col items-center gap-2 px-20">
-                            {/* First container */}
-                            <div className="flex w-[900px] gap-10 justify-center px-5">
-                                <InlineFormValue label="Title" inputClassName="h-6" className="w-full" />
+                        <div className="flex w-full justify-between">
+                            {/* Left */}
+                            <div className="mt-12 w-fit flex flex-col gap-2">
+                                <InlineFormValue label="Name" inputClassName="h-6 w-20" />
+                                <InlineFormValue label="Biography" inputClassName="h-20 w-[200px]" />
                             </div>
-                            {/* Second container */}
-                            <div className="flex w-full justify-between">
-                                {/* Left */}
-                                <div className="w-fit flex flex-col gap-2">
-                                    <InlineFormValue label="Name" inputClassName="h-6 w-20" />
-                                    <InlineFormValue label="Biography" inputClassName="h-20 w-[200px]" />
+                            {/* Middle */}
+                            <div className="w-[700px] px-10 flex flex-col gap-5 items-center">
+                                {/* First container */}
+                                <div className="flex w-full gap-10 justify-center">
+                                    <InlineFormValue label="Title" inputClassName="h-6" className="w-full" />
                                 </div>
-                                {/* Middle */}
-                                <div className="w-[900px] px-5 flex flex-col gap-5">
+                                {/* Second container */}
+                                <div className="w-full flex flex-col gap-5">
                                     <InlineFormValue label="Forcast and Stories" inputClassName="h-20 w-full" />
                                     <InlineFormValue label="Keywords" inputClassName="h-6 w-full" />
                                 </div>
-                                {/* Right */}
-                                <div className="w-fit flex flex-col items-end gap-2">
-                                    <InlineFormValue label="Image Source" inputClassName="h-6 w-20" />
-                                    <InlineFormValue label="Image Copyright" inputClassName="h-6 w-20" />
-                                </div>
+                            </div>
+                            {/* Right */}
+                            <div className="mt-12 w-fit flex flex-col items-end gap-2">
+                                <InlineFormValue label="Image Source" inputClassName="h-6 w-20" />
+                                <InlineFormValue label="Image Copyright" inputClassName="h-6 w-20" />
                             </div>
                         </div>
                     </div>
                     {/* Small Screen Laptops, Tablets & Mobiles */}
-                    <div className="h-full w-full 2xl:hidden flex flex-col items-center gap-10 px-5 md:px-20 py-5">
+                    <div className="h-full w-full xl:hidden flex flex-col items-center gap-10 px-5 md:px-20 py-5 mt-10">
                         <Image src={`https://picsum.photos/500/300?random=${randomIndex}`} alt="upload-image" width={400} height={400} className="w-full" />
                         <div className="w-full flex flex-col gap-5">
                             <InlineFormValue label="Title" inputClassName="h-8 w-full max-w-[400px]" />

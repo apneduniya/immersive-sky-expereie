@@ -1,8 +1,12 @@
+"use client"
+
 import ScatteredImages from "@/components/common/ScatteredImages";
 import ContextMenu from "@/components/layout/NavContextMenu";
+import { useEffect, useState } from "react";
 
 
 export default function ImageArchivePage() {
+    const [images, setImages] = useState([]);
 
     // const images = [
     //     "https://images.unsplash.com/photo-1476231682828-37e571bc172f?q=80&w=3474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -16,8 +20,18 @@ export default function ImageArchivePage() {
     //     "https://images.unsplash.com/photo-1546484475-7f7bd55792da?q=80&w=2581&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     // ]
 
-    // list of numbers till 30
-    const images = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+
+    useEffect(() => {
+        const img = []
+
+        for (let i = 0; i < 10; i++) {
+            img.push({
+                src: `https://picsum.photos/300/200?random=${i}`,
+                imgScale: Math.random() * 0.5 + 0.5,
+            })
+        }
+        setImages(img);
+    }, [])
 
     return (
         <>

@@ -9,6 +9,20 @@ const ScatteredImages = ({ images }) => {
     const [positions, setPositions] = useState([]);
     const containerRef = useRef(null);
 
+    const imageWidth = 300;
+    const imageHeight = 200;
+
+    const isOverlap = (newPos, positions) => {
+        for (const pos of positions) {
+            const overlapX = newPos.x < pos.x + imageWidth && newPos.x + imageWidth > pos.x;
+            const overlapY = newPos.y < pos.y + imageHeight && newPos.y + imageHeight > pos.y;
+            if (overlapX && overlapY) {
+                return true;
+            }
+        }
+        return false;
+    };
+
     useEffect(() => {
         if (containerRef.current) {
             const parentWidth = containerRef.current.clientWidth;
@@ -16,11 +30,24 @@ const ScatteredImages = ({ images }) => {
 
             console.log(parentHeight, parentWidth);
 
-            // Calculate random positions
-            const newPositions = images.map(() => ({
-                x: Math.random() * parentWidth,
-                y: Math.random() * parentHeight,
-            }));
+            // Calculate random positions without overlapping
+            const newPositions = [];
+            for (let i = 0; i < images.length; i++) {
+                let newPos;
+                let attempts = 0;
+                do {
+                    newPos = {
+                        x: Math.random() * (parentWidth - imageWidth),
+                        y: Math.random() * (parentHeight - imageHeight),
+                    };
+                    attempts++;
+                    if (attempts > 2000) {
+                        // Fallback to avoid infinite loop
+                        break;
+                    }
+                } while (isOverlap(newPos, newPositions));
+                newPositions.push(newPos);
+            }
 
             setPositions(newPositions);
         }
@@ -28,21 +55,24 @@ const ScatteredImages = ({ images }) => {
 
     return (
         <div ref={containerRef} className="relative h-full w-full min-h-dvh">
-            {images.map((src, index) => {
+            {images.map(({ src, imgScale }, index) => {
 
                 return (
                     <Link key={index} href="/image-details">
                         <Image
-                            // src={src}
-                            src={"https://picsum.photos/300/200" + `?random=${index}`}
+                            src={src}
+                            // src={"https://picsum.photos/300/200" + `?random=${index}`}
                             alt={`spiral-img-${index}`}
                             height={300}
                             width={300}
                             className="absolute transition-transform duration-500 transform hover:scale-110 h-44 w-72 cursor-pointer"
                             style={{
-                                transform: `translate(-50%, -50%)`,
+                                // transform: `translate(-50%, -50%)`,
                                 left: `${positions[index]?.x}px`,
-                                top: `${positions[index]?.y}px`
+                                top: `${positions[index]?.y}px`,
+                                scale: `${imgScale}`,
+                                opacity: `${imgScale}`,
+                                zIndex: `${Math.floor(imgScale * 100)}`,
                             }}
                         />
                     </Link>
