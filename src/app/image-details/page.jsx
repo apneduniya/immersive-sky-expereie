@@ -240,7 +240,7 @@ function ImageDetailsPage() {
 
 export default function SuspendedImageDetailsPage() {
     return (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense>
             <ImageDetailsPage />
         </Suspense>
     );
