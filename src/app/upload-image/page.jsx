@@ -79,8 +79,6 @@ function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNex
             }
             reader.readAsDataURL(file);
         });
-
-        window.location.reload();
     };
 
     const handleUploadClick = () => {
