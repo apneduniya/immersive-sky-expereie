@@ -55,10 +55,10 @@ const ScatteredImages = ({ images }) => {
 
     return (
         <div ref={containerRef} className="relative h-full w-full min-h-dvh">
-            {images.map(({ src, imgScale }, index) => {
+            {images.map(({ src, scale, _id }, index) => {
 
                 return (
-                    <Link key={index} href="/image-details">
+                    <Link key={index} href={`/image-details?id=${_id}`}>
                         <Image
                             src={src}
                             // src={"https://picsum.photos/300/200" + `?random=${index}`}
@@ -70,9 +70,9 @@ const ScatteredImages = ({ images }) => {
                                 // transform: `translate(-50%, -50%)`,
                                 left: `${positions[index]?.x}px`,
                                 top: `${positions[index]?.y}px`,
-                                scale: `${imgScale}`,
-                                opacity: `${imgScale}`,
-                                zIndex: `${Math.floor(imgScale * 100)}`,
+                                scale: `${scale}`,
+                                opacity: `${scale}`,
+                                zIndex: `${Math.floor(scale * 100)}`,
                             }}
                         />
                     </Link>

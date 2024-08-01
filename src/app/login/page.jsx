@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import BottomGradient from "@/components/common/BottomGradient";
@@ -8,12 +8,16 @@ import { User2 } from "lucide-react";
 import ContextMenu from "@/components/layout/NavContextMenu";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { loginUser } from "@/utils/api/auth";
+import { getNewAssetURL } from "@/utils/api/asset";
+import { updateBackgroundImage } from "@/utils/updateBGImg";
 
 
 export default function LoginPage() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("abc2@example.com");
+    const [password, setPassword] = useState("12345678");
     const [terms, setTerms] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const router = useRouter();
 
@@ -25,30 +29,56 @@ export default function LoginPage() {
         setPassword(e.target.value);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // if (!email || !password) {
-        //     alert("Please fill in all fields");
-        //     return;
-        // }
+        if (!email || !password) {
+            alert("Please fill in all fields");
+            return;
+        }
 
-        // if (!terms) {
-        //     alert("Please accept terms and conditions");
-        //     return;
-        // }
+        if (!terms) {
+            alert("Please accept terms and conditions");
+            return;
+        }
 
-        // console.log("Email:", email);
-        // console.log("Password", password);
+        setLoading(true);
 
-        // window.location.href = "/upload-image";
-        router.push("/upload-image");
+        const username = email;
+        const data = await loginUser({
+            username,
+            password
+        });
+
+        setLoading(false);
+
+        if (data.success) {
+            router.push("/");
+        } else {
+            alert("Login failed!");
+        }
     }
+
+    useEffect(() => {
+		const fetchURL = async () => {
+		  try {
+			const fetchedUrl = await getNewAssetURL();
+			updateBackgroundImage(fetchedUrl.data); 
+		  } catch (error) {
+			console.error("Failed to fetch new asset URL", error);
+		  }
+		};
+	
+		fetchURL();
+		const intervalId = setInterval(fetchURL, process.env.NEXT_PUBLIC_LATEST_IMG_FETCH_TIME); // 1000 milliseconds = 1 second
+	
+		return () => clearInterval(intervalId);
+	  }, []);
 
     return (
         <>
             <ContextMenu>
-                <main className="min-h-dvh max-w-dvw w-full flex items-center justify-center bg-img-bg-8 bg-cover bg-center">
+                <main className="main flex items-center justify-center">
                     <div className="px-5 lg:px-10 py-5 w-dvw max-w-[520px]">
                         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
                             <Input type="email" placeholder="Email/Phone" onChange={handleEmailChange} value={email} className="w-full h-12 text-center bg-transparent placeholder:text-black border border-white text-xs" />
@@ -67,7 +97,7 @@ export default function LoginPage() {
                                     </p>
                                 </div>
                             </div>
-                            <button className="relative z-10 h-12 w-full bg- rounded-lg flex items-center justify-center" type="submit">
+                            <button className="relative z-10 h-12 w-full bg- rounded-lg flex items-center justify-center" type="submit" disabled={loading}>
                                 <span className="z-30">Sign In</span>
                                 <div className="absolute z-20 h-full w-full rounded-lg blur-sm bg-white opacity-50" />
                             </button>
@@ -97,10 +127,10 @@ export default function LoginPage() {
                                 </span>
                                 <BottomGradient />
                             </button> */}
-                            <button className="relative z-10 h-12 w-full bg- rounded-lg flex items-center justify-center">
+                            <div className="relative z-10 h-12 w-full bg- rounded-lg flex items-center justify-center cursor-pointer">
                                 <span className="z-30">Enter as a guest</span>
                                 <div className="absolute z-20 h-full w-full rounded-lg blur-sm bg-white opacity-50" />
-                            </button>
+                            </div>
                         </Link>
 
                         <p className="text-sm text-gray-700 mt-2 text-center">

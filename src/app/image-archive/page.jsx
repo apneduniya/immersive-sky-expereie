@@ -2,6 +2,8 @@
 
 import ScatteredImages from "@/components/common/ScatteredImages";
 import ContextMenu from "@/components/layout/NavContextMenu";
+import { getNewAssetURL, getScatterAsset } from "@/utils/api/asset";
+import { updateBackgroundImage } from "@/utils/updateBGImg";
 import { useEffect, useState } from "react";
 
 
@@ -22,21 +24,42 @@ export default function ImageArchivePage() {
 
 
     useEffect(() => {
-        const img = []
-
-        for (let i = 0; i < 10; i++) {
-            img.push({
-                src: `https://picsum.photos/300/200?random=${i}`,
-                imgScale: Math.random() * 0.5 + 0.5,
-            })
+        async function fetchImages() {
+            try {
+                const response = await getScatterAsset();
+                return response.data;
+            } catch (error) {
+                console.error("Failed to fetch scatter asset", error);
+                return [];
+            }
         }
-        setImages(img);
+
+        fetchImages().then((data) => {
+            setImages(data);
+        });
     }, [])
+
+    
+    useEffect(() => {
+        const fetchURL = async () => {
+            try {
+                const fetchedUrl = await getNewAssetURL();
+                updateBackgroundImage(fetchedUrl.data);
+            } catch (error) {
+                console.error("Failed to fetch new asset URL", error);
+            }
+        };
+
+        fetchURL();
+        const intervalId = setInterval(fetchURL, process.env.NEXT_PUBLIC_LATEST_IMG_FETCH_TIME); // 1000 milliseconds = 1 second
+
+        return () => clearInterval(intervalId);
+    }, []);
 
     return (
         <>
             <ContextMenu>
-                <main className="min-h-dvh w-full px-5 lg:px-10 py-5 bg-img-bg-5 bg-cover bg-center overflow-hidden flex items-center justify-center">
+                <main className="h-dvh main px-5 lg:px-10 py-5 overflow-hidden flex items-center justify-center">
                     <ScatteredImages images={images} />
                 </main>
             </ContextMenu>

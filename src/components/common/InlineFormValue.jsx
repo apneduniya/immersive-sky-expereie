@@ -1,7 +1,7 @@
 
 
 
-export default function InlineFormValue({ label, value="null", className="", valueClassName="" }) {
+export default function InlineFormValue({ label, value="--", className="", valueClassName="" }) {
     return (
         <>
             <div className={`flex gap-4 items-center justify-between ${className}`}>

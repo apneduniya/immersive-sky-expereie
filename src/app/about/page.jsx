@@ -1,16 +1,39 @@
 "use client"
 
+import { useState, useEffect } from 'react';
 import ContextMenu from "@/components/layout/NavContextMenu";
-import { useState } from "react";
+import { getNewAssetURL } from "@/utils/api/asset";
+import { updateBackgroundImage } from '@/utils/updateBGImg';
 
 
 export default function AboutPage() {
     const [hover, setHover] = useState(false);
+    const [url, setUrl] = useState('');
+
+    useEffect(() => {
+        const fetchURL = async () => {
+            try {
+                const fetchedUrl = await getNewAssetURL();
+                updateBackgroundImage(fetchedUrl.data);
+            } catch (error) {
+                console.error("Failed to fetch new asset URL", error);
+            }
+        };
+
+        fetchURL();
+        const intervalId = setInterval(fetchURL, process.env.NEXT_PUBLIC_LATEST_IMG_FETCH_TIME); // 1000 milliseconds = 1 second
+
+        return () => clearInterval(intervalId);
+    }, []);
 
     return (
         <>
             <ContextMenu>
-                <main className="min-h-dvh w-full px-5 lg:px-10 py-5 flex items-center justify-between bg-img-bg-6 bg-cover bg-center">
+                <main className="main px-5 lg:px-10 py-5 flex items-center justify-between"
+                    style={{
+                        backgroundImage: `url(${url})`
+                    }}
+                >
                     <div className="h-full w-full flex items-center">
                         <p className="md:text-base text-sm font-serif text-justify p-5 w-full lg:w-10/12" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
                             {

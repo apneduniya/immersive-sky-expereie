@@ -8,6 +8,8 @@ import arrowLeftIcon from "@/assets/icons/arrow_left.png";
 import arrowRightIcon from "@/assets/icons/arrow_right.png";
 import tamarindImg from "@/assets/images/tamarind.png";
 import ContextMenu from "@/components/layout/NavContextMenu";
+import { getNewAssetURL } from "@/utils/api/asset";
+import { updateBackgroundImage } from "@/utils/updateBGImg";
 
 
 export default function TamarindSkyPage() {
@@ -32,11 +34,27 @@ export default function TamarindSkyPage() {
 		}
 	}, [image])
 
+	useEffect(() => {
+		const fetchURL = async () => {
+			try {
+				const fetchedUrl = await getNewAssetURL();
+				updateBackgroundImage(fetchedUrl.data);
+			} catch (error) {
+				console.error("Failed to fetch new asset URL", error);
+			}
+		};
+
+		fetchURL();
+		const intervalId = setInterval(fetchURL, process.env.NEXT_PUBLIC_LATEST_IMG_FETCH_TIME); // 1000 milliseconds = 1 second
+
+		return () => clearInterval(intervalId);
+	}, []);
+
 	return (
 		<>
 			<ContextMenu>
-				<main ref={ref} className="min-h-dvh w-full flex items-center justify-between bg-img-bg-5 bg-cover bg-center">
-					<div className="pl-10 min-h-dvh h-full w-15 md:w-18 lg:w-20 flex items-center justify-center" onMouseEnter={() =>setArrowLeftVisible(true)} onMouseLeave={() =>setArrowLeftVisible(false)}>
+				<main ref={ref} className="main flex items-center justify-between">
+					<div className="pl-10 min-h-dvh h-full w-15 md:w-18 lg:w-20 flex items-center justify-center" onMouseEnter={() => setArrowLeftVisible(true)} onMouseLeave={() => setArrowLeftVisible(false)}>
 						{
 							arrowLeftVisible && <Image src={arrowLeftIcon} alt="arrow-left" className="cursor-pointer select-none w-5 md:w-8 lg:w-10" />
 						}
@@ -50,7 +68,7 @@ export default function TamarindSkyPage() {
 							}
 						</p>
 					</div>
-					<div className="pr-10 min-h-dvh h-full w-15 md:w-18 lg:w-20 flex items-center justify-center" onMouseEnter={() =>setArrowRightVisible(true)} onMouseLeave={() =>setArrowRightVisible(false)}>
+					<div className="pr-10 min-h-dvh h-full w-15 md:w-18 lg:w-20 flex items-center justify-center" onMouseEnter={() => setArrowRightVisible(true)} onMouseLeave={() => setArrowRightVisible(false)}>
 						{
 							arrowRightVisible && <Image src={arrowRightIcon} alt="arrow-right" className="cursor-pointer select-none w-5 md:w-8 lg:w-10" />
 						}
