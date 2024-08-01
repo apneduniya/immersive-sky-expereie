@@ -3,7 +3,7 @@
 import { InlineLabelInput, InlineLabelTextarea } from "@/components/common/InlineLabelInput";
 import ContextMenu from "@/components/layout/NavContextMenu";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { getUser } from "@/utils/api/auth";
 import { deleteAsset, getAsset, getMyAssets, saveAsset } from "@/utils/api/asset";
 import defaultImg from "@/assets/images/default_img.jpg";
@@ -14,7 +14,7 @@ import arrowLeftIcon from "@/assets/icons/arrow_left.png";
 import arrowRightIcon from "@/assets/icons/arrow_right.png";
 
 
-function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNext = () => { }, handlePrev = () => { } }) {
+function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNext = () => { }, handlePrev = () => { }, defaultSrc="" }) {
     const fileInputRef = useRef(null);
     const [hover, setHover] = useState(false);
 
@@ -52,7 +52,7 @@ function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNex
         fileType: 'test',
         archival: 'test',
         document: 'test',
-        src: defaultImg
+        src: defaultSrc
     });
 
     const handleChange = (e) => {
@@ -137,7 +137,7 @@ function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNex
                     fileType: '',
                     archival: '',
                     document: '',
-                    src: defaultImg
+                    src: defaultSrc
                 }
             );
 
@@ -157,6 +157,45 @@ function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNex
             setFormData(data);
         }
     }, [data]);
+
+    useEffect(() => {
+        setFormData({
+            title: 'test',
+            disaster: 'test',
+            event: 'test',
+            date: 'test',
+            day: 'test',
+            time: 'test',
+            duration: 'test',
+            place: 'test',
+            affectedAreas: 'test',
+            geolocation: 'test',
+            device: 'test',
+            cameraModel: 'test',
+            name: 'test',
+            biography: 'test',
+            forecastAndStories: 'test',
+            keywords: 'test',
+            imageSource: 'test',
+            imageCopyright: 'test',
+            software: 'test',
+            aspectRatio: 'test',
+            resolution: 'test',
+            iso: 'test',
+            shutterSpeed: 'test',
+            aperture: 'test',
+            photo: 'test',
+            video: 'test',
+            audio: 'test',
+            sound: 'test',
+            fileName: 'test',
+            fileSize: 'test',
+            fileType: 'test',
+            archival: 'test',
+            document: 'test',
+            src: defaultSrc
+        });
+    }, [defaultSrc]);
 
     return (
         <>
@@ -327,7 +366,7 @@ function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNex
 }
 
 
-export default function UploadPage() {
+function UploadPage() {
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
     const [assets, setAssets] = useState([
         {
@@ -336,6 +375,7 @@ export default function UploadPage() {
     ]);
     const [currentId, setCurrentId] = useState("default");
     const [data, setData] = useState(null);
+    const [newUploadImgSrc, setNewUploadImgSrc] = useState("");
 
 
     useEffect(() => {
@@ -361,6 +401,7 @@ export default function UploadPage() {
             try {
                 const fetchedUrl = await getNewAssetURL();
                 updateBackgroundImage(fetchedUrl.data);
+                setNewUploadImgSrc(fetchedUrl.data);
             } catch (error) {
                 console.error("Failed to fetch new asset URL", error);
             }
@@ -450,7 +491,7 @@ export default function UploadPage() {
                     fileType: '',
                     archival: '',
                     document: '',
-                    src: defaultImg
+                    src: newUploadImgSrc
                 }
             )
             return;
@@ -476,11 +517,21 @@ export default function UploadPage() {
         <>
             <ContextMenu>
                 <main className="main max-w-dvw px-5 md:px-20 py-10 flex">
-                    <Upload isUserLoggedIn={isUserLoggedIn} id={currentId} handleNext={handleNext} handlePrev={handlePrev} data={data} />
+                    <Upload isUserLoggedIn={isUserLoggedIn} id={currentId} handleNext={handleNext} handlePrev={handlePrev} data={data} defaultSrc={newUploadImgSrc} />
                 </main>
             </ContextMenu>
         </>
     )
+}
+
+
+
+export default function SuspenseUploadPage() {
+    return (
+        <Suspense>
+            <UploadPage />
+        </Suspense>
+    );
 }
 
 
