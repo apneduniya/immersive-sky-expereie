@@ -81,7 +81,7 @@ async function getScatterAsset() {
 
 async function getAsset(id) {
     try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/asset/${id}`,
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/asset/id/${id}`,
             {
                 headers: {
                     'Content-Type': 'application/json',

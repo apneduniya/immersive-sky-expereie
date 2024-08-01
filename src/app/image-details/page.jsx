@@ -103,7 +103,7 @@ export default function ImageDetailsPage() {
                         </Link>
                     </div>
                     {/* Desktop */}
-                    <div className="h-full w-full xl:flex flex-col items-center gap-5 hidden self-center">
+                    <div className="h-full w-full xl:flex flex-col items-center gap-10 hidden self-center">
                         {/* Top container */}
                         <div className="w-full flex flex-col items-center gap-8">
                             {/* First container */}

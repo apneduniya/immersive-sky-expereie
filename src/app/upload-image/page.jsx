@@ -179,7 +179,7 @@ export default function UploadPage() {
                             </div>
                         </div>
                         {/* Middle container */}
-                        <div className="w-full flex items-center justify-center">
+                        <div className="w-full flex items-center justify-center mt-3">
                             {/* Left container */}
                             <div className="w-1/4 flex flex-col -rotate-90">
                                 <div className="self-end flex flex-col gap-2">
