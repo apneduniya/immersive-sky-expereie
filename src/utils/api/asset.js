@@ -103,9 +103,59 @@ async function getAsset(id) {
 }
 
 
+async function getMyAssets() {
+    try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/asset/me`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'accept': 'application/json',
+                    'Authorization': `Bearer ${getToken()}`
+                }
+            }
+        );
+
+        return {
+            success: true,
+            data: response.data
+        }
+    } catch (error) {
+        return {
+            success: false,
+            data: error.response.data
+        }
+    }
+}
+
+
+async function deleteAsset(id) {
+    try {
+        const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/asset/id/${id}`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'accept': 'application/json',
+                    'Authorization': `Bearer ${getToken()}`
+                }
+            }
+        );
+
+        return {
+            success: true,
+            data: response.data
+        }
+    } catch (error) {
+        return {
+            success: false,
+            data: error.response.data
+        }
+    }
+}
+
+
 
 
 export {
-    saveAsset, getNewAssetURL, getScatterAsset, getAsset
+    saveAsset, getNewAssetURL, getScatterAsset, getAsset, getMyAssets, deleteAsset
 }
 
