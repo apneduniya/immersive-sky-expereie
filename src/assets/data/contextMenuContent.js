@@ -6,25 +6,25 @@ export const contextMenuContent = {
         {
             "id": 1,
             "text": "Immersive Sky Experience",
-            "odia": "ଏମରସିଭ ସ୍କା ଏ ଏକ୍ସପେ ରିଏନ୍ସ",
+            "odia": "ଏମରସିଭ ସ୍କାଏ ଏକ୍ସପେରିଏନ୍ସ",
             "link": "/"
         },
         {
             "id": 2,
             "text": "Tamarind Sky",
-            "odia": "ଆକା ଶ କୟାଁ",
+            "odia": "ଆକାଶ କୟାଁ",
             "link": "/tamarindsky"
         },
         {
             "id": 3,
-            "text": "Image Archive",
-            "odia": "ପରିବେ ଶ ବିପର୍ଯ୍ୟୟ ପ୍ରତିଛବି ଅଭିଲେ ଖା ଗା ର",
+            "text": "Environmental Disaster Image Archive",
+            "odia": "ପରିବେଶ ବିପର୍ଯ୍ୟୟ ପ୍ରତିଛବି ଅଭିଲେଖାଗାର",
             "link": "/image-archive"
         },
         {
             "id": 4,
-            "text": "Login / Register",
-            "odia": "ରେ ଜିଷ୍ଟର",
+            "text": "Register",
+            "odia": "ରେଜିଷ୍ଟର",
             "link": "/register"
         }
     ]

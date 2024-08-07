@@ -64,10 +64,10 @@ function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNex
         });
     };
 
-    const handleFileChange = (e) => {
+    const handleFileChange = async (e) => {
         const files = Array.from(e.target.files);
 
-        files.forEach(file => {
+        for (const file of files) {
             const reader = new FileReader();
             reader.onload = async (e) => {
                 const base64Image = e.target.result;
@@ -79,7 +79,9 @@ function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNex
                 await handleSubmit(url);
             }
             reader.readAsDataURL(file);
-        });
+        }
+
+        alert("Files submitted successfully");
     };
 
     const handleUploadClick = () => {
