@@ -201,9 +201,39 @@ async function getLatestSlogan() {
 }
 
 
+async function searchScatterAsset(data) {
+
+    const query = Object.keys(data)
+        .filter(key => data[key] !== '') // Filter out keys with empty values
+        .map(key => key + '=' + data[key])
+        .join('&'); // Convert object to query string like "key1=value1&key2=value2"
+
+    try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/asset/search?${query}`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'accept': 'application/json',
+                }
+            }
+        );
+
+        return {
+            success: true,
+            data: response.data
+        }
+    } catch (error) {
+        return {
+            success: false,
+            data: error.response.data
+        }
+    }
+}
+
+
 
 
 export {
-    saveAsset, getNewAsset, getNewAssetURL, getScatterAsset, getAsset, getMyAssets, deleteAsset, getLatestSlogan
+    saveAsset, getNewAsset, getNewAssetURL, getScatterAsset, getAsset, getMyAssets, deleteAsset, getLatestSlogan, searchScatterAsset
 }
 
