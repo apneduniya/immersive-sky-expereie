@@ -153,9 +153,33 @@ async function deleteAsset(id) {
 }
 
 
+async function getLatestSlogan() {
+    try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/asset/slogan`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'accept': 'application/json',
+                }
+            }
+        );
+
+        return {
+            success: true,
+            data: response.data
+        }
+    } catch (error) {
+        return {
+            success: false,
+            data: error.response.data
+        }
+    }
+}
+
+
 
 
 export {
-    saveAsset, getNewAssetURL, getScatterAsset, getAsset, getMyAssets, deleteAsset
+    saveAsset, getNewAssetURL, getScatterAsset, getAsset, getMyAssets, deleteAsset, getLatestSlogan
 }
 

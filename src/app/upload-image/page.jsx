@@ -12,46 +12,47 @@ import { getNewAssetURL } from "@/utils/api/asset";
 import { updateBackgroundImage } from '@/utils/updateBGImg';
 import arrowLeftIcon from "@/assets/icons/arrow_left.png";
 import arrowRightIcon from "@/assets/icons/arrow_right.png";
+import { CheckboxLabelInput } from "@/components/common/CheckboxLabelInput";
 
 
-function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNext = () => { }, handlePrev = () => { }, defaultSrc="" }) {
+function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNext = () => { }, handlePrev = () => { }, defaultSrc = "" }) {
     const fileInputRef = useRef(null);
     const [hover, setHover] = useState(false);
 
     const [formData, setFormData] = useState({
-        title: 'test',
-        disaster: 'test',
-        event: 'test',
-        date: 'test',
-        day: 'test',
-        time: 'test',
-        duration: 'test',
-        place: 'test',
-        affectedAreas: 'test',
-        geolocation: 'test',
-        device: 'test',
-        cameraModel: 'test',
-        name: 'test',
-        biography: 'test',
-        forecastAndStories: 'test',
-        keywords: 'test',
-        imageSource: 'test',
-        imageCopyright: 'test',
-        software: 'test',
-        aspectRatio: 'test',
-        resolution: 'test',
-        iso: 'test',
-        shutterSpeed: 'test',
-        aperture: 'test',
-        photo: 'test',
-        video: 'test',
-        audio: 'test',
-        sound: 'test',
-        fileName: 'test',
-        fileSize: 'test',
-        fileType: 'test',
-        archival: 'test',
-        document: 'test',
+        title: '',
+        disaster: '',
+        event: '',
+        date: '',
+        day: '',
+        time: '',
+        duration: '',
+        place: '',
+        affectedAreas: '',
+        geolocation: '',
+        device: '',
+        cameraModel: '',
+        name: '',
+        biography: '',
+        forecastAndStories: '',
+        keywords: '',
+        imageSource: '',
+        imageCopyright: '',
+        software: '',
+        aspectRatio: '',
+        resolution: '',
+        iso: '',
+        shutterSpeed: '',
+        aperture: '',
+        photo: false,
+        video: false,
+        audio: false,
+        sound: false,
+        fileName: '',
+        fileSize: '',
+        fileType: '',
+        archival: '',
+        document: '',
         src: defaultSrc
     });
 
@@ -128,10 +129,10 @@ function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNex
                     iso: '',
                     shutterSpeed: '',
                     aperture: '',
-                    photo: '',
-                    video: '',
-                    audio: '',
-                    sound: '',
+                    photo: false,
+                    video: false,
+                    audio: false,
+                    sound: false,
                     fileName: '',
                     fileSize: '',
                     fileType: '',
@@ -159,40 +160,44 @@ function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNex
     }, [data]);
 
     useEffect(() => {
+        console.log(formData);
+    }, [formData]);
+
+    useEffect(() => {
         setFormData({
-            title: 'test',
-            disaster: 'test',
-            event: 'test',
-            date: 'test',
-            day: 'test',
-            time: 'test',
-            duration: 'test',
-            place: 'test',
-            affectedAreas: 'test',
-            geolocation: 'test',
-            device: 'test',
-            cameraModel: 'test',
-            name: 'test',
-            biography: 'test',
-            forecastAndStories: 'test',
-            keywords: 'test',
-            imageSource: 'test',
-            imageCopyright: 'test',
-            software: 'test',
-            aspectRatio: 'test',
-            resolution: 'test',
-            iso: 'test',
-            shutterSpeed: 'test',
-            aperture: 'test',
-            photo: 'test',
-            video: 'test',
-            audio: 'test',
-            sound: 'test',
-            fileName: 'test',
-            fileSize: 'test',
-            fileType: 'test',
-            archival: 'test',
-            document: 'test',
+            title: '',
+            disaster: '',
+            event: '',
+            date: '',
+            day: '',
+            time: '',
+            duration: '',
+            place: '',
+            affectedAreas: '',
+            geolocation: '',
+            device: '',
+            cameraModel: '',
+            name: '',
+            biography: '',
+            forecastAndStories: '',
+            keywords: '',
+            imageSource: '',
+            imageCopyright: '',
+            software: '',
+            aspectRatio: '',
+            resolution: '',
+            iso: '',
+            shutterSpeed: '',
+            aperture: '',
+            photo: false,
+            video: false,
+            audio: false,
+            sound: false,
+            fileName: '',
+            fileSize: '',
+            fileType: '',
+            archival: '',
+            document: '',
             src: defaultSrc
         });
     }, [defaultSrc]);
@@ -257,24 +262,33 @@ function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNex
                     <div className="flex items-end">
                         <div className="w-[700px] relative" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} >
                             {
-                                hover && <Image src={arrowLeftIcon} alt="arrow-left" className="absolute cursor-pointer select-none w-5 md:w-8 lg:w-10 top-[50%] left-2 transform -translate-y-1/2" onClick={handlePrev} />
+                                hover && isUserLoggedIn && <Image src={arrowLeftIcon} alt="arrow-left" className="absolute cursor-pointer select-none w-5 md:w-8 lg:w-10 top-[50%] left-2 transform -translate-y-1/2" onClick={handlePrev} />
                             }
                             <Image src={formData.src} alt="upload-image" width={400} height={400} className="w-full" />
                             {
-                                hover && <Image src={arrowRightIcon} alt="arrow-left" className="absolute cursor-pointer select-none w-5 md:w-8 lg:w-10 top-[50%] right-2 transform -translate-y-1/2" onClick={handleNext} />
+                                hover && isUserLoggedIn && <Image src={arrowRightIcon} alt="arrow-left" className="absolute cursor-pointer select-none w-5 md:w-8 lg:w-10 top-[50%] right-2 transform -translate-y-1/2" onClick={handleNext} />
                             }
                         </div>
-                        <button className="bg-transparent border-none font-bold italic uppercase -rotate-90 mb-5" onClick={handleDelete}>
-                            Delete
-                        </button>
+                        {
+                            isUserLoggedIn? 
+                            <button className="bg-transparent border-none font-bold italic uppercase -rotate-90 mb-5" onClick={handleDelete}>
+                                Delete
+                            </button>
+                            :
+                            <div className="w-16"></div> /* Whitespace */
+                        }
                     </div>
                     {/* Right container */}
                     <div className="w-1/4 flex flex-col rotate-90">
                         <div className="self-start flex flex-col gap-2">
-                            <InlineLabelInput label="Photo" name="photo" value={formData.photo} onChange={handleChange} inputClassName="h-6 w-20" />
+                            {/* <InlineLabelInput label="Photo" name="photo" value={formData.photo} onChange={handleChange} inputClassName="h-6 w-20" />
                             <InlineLabelInput label="Video" name="video" value={formData.video} onChange={handleChange} inputClassName="h-6 w-20" />
                             <InlineLabelInput label="Audio" name="audio" value={formData.audio} onChange={handleChange} inputClassName="h-6 w-20" />
-                            <InlineLabelInput label="Sound" name="sound" value={formData.sound} onChange={handleChange} inputClassName="h-6 w-20" />
+                            <InlineLabelInput label="Sound" name="sound" value={formData.sound} onChange={handleChange} inputClassName="h-6 w-20" /> */}
+                            <CheckboxLabelInput label="Photo" value={formData.photo} onClick={()=>setFormData((prev)=>({...prev, photo: !prev.photo}))} />
+                            <CheckboxLabelInput label="Video" value={formData.video} onClick={()=>setFormData((prev)=>({...prev, video: !prev.video}))} />
+                            <CheckboxLabelInput label="Audio" value={formData.audio} onClick={()=>setFormData((prev)=>({...prev, audio: !prev.audio}))} />
+                            <CheckboxLabelInput label="Sound" value={formData.sound} onClick={()=>setFormData((prev)=>({...prev, sound: !prev.sound}))} />
                         </div>
                         <div className="self-end flex flex-col gap-2">
                             <InlineLabelInput label="File Name" name="fileName" value={formData.fileName} onChange={handleChange} inputClassName="h-6 w-20" />
@@ -482,10 +496,10 @@ function UploadPage() {
                     iso: '',
                     shutterSpeed: '',
                     aperture: '',
-                    photo: '',
-                    video: '',
-                    audio: '',
-                    sound: '',
+                    photo: false,
+                    video: false,
+                    audio: false,
+                    sound: false,
                     fileName: '',
                     fileSize: '',
                     fileType: '',

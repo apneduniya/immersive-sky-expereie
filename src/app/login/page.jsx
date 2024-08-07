@@ -14,8 +14,8 @@ import { updateBackgroundImage } from "@/utils/updateBGImg";
 
 
 export default function LoginPage() {
-    const [email, setEmail] = useState("abc2@example.com");
-    const [password, setPassword] = useState("12345678");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [terms, setTerms] = useState(false);
     const [loading, setLoading] = useState(false);
 

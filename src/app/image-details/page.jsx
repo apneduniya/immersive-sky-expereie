@@ -10,6 +10,7 @@ import { updateBackgroundImage } from "@/utils/updateBGImg";
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from 'next/navigation';
 import defaultImg from "@/assets/images/default_img.jpg";
+import { CheckboxFormValue } from "@/components/common/CheckboxFormValue";
 
 
 function ImageDetailsPage() {
@@ -40,10 +41,10 @@ function ImageDetailsPage() {
         iso: '--',
         shutterSpeed: '--',
         aperture: '--',
-        photo: '--',
-        video: '--',
-        audio: '--',
-        sound: '--',
+        photo: false,
+        video: false,
+        audio: false,
+        sound: false,
         fileName: '--',
         fileSize: '--',
         fileType: '--',
@@ -161,10 +162,14 @@ function ImageDetailsPage() {
                             {/* Right container */}
                             <div className="w-1/4 flex flex-col rotate-90">
                                 <div className="self-start flex flex-col gap-2">
-                                    <InlineFormValue label="Photo" value={data.photo} inputClassName="h-6 w-20" />
+                                    {/* <InlineFormValue label="Photo" value={data.photo} inputClassName="h-6 w-20" />
                                     <InlineFormValue label="Video" value={data.video} inputClassName="h-6 w-20" />
                                     <InlineFormValue label="Audio" value={data.audio} inputClassName="h-6 w-20" />
-                                    <InlineFormValue label="Sound" value={data.sound} inputClassName="h-6 w-20" />
+                                    <InlineFormValue label="Sound" value={data.sound} inputClassName="h-6 w-20" /> */}
+                                    <CheckboxFormValue label="Photo" value={data.photo} />
+                                    <CheckboxFormValue label="Video" value={data.video} />
+                                    <CheckboxFormValue label="Audio" value={data.audio} />
+                                    <CheckboxFormValue label="Sound" value={data.sound} />          
                                 </div>
                                 <div className="self-end flex flex-col gap-2">
                                     <InlineFormValue label="File Name" value={data.fileName} inputClassName="h-6 w-20" />

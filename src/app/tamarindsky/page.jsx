@@ -6,10 +6,15 @@ import { useScreenshot, createFileName } from "use-react-screenshot";
 
 import arrowLeftIcon from "@/assets/icons/arrow_left.png";
 import arrowRightIcon from "@/assets/icons/arrow_right.png";
-import tamarindImg from "@/assets/images/tamarind.png";
+// import tamarindImg from "@/assets/images/tamarind.png";
 import ContextMenu from "@/components/layout/NavContextMenu";
-import { getNewAssetURL } from "@/utils/api/asset";
+import { getLatestSlogan, getNewAssetURL } from "@/utils/api/asset";
 import { updateBackgroundImage } from "@/utils/updateBGImg";
+
+
+function SloganImage(sloganImage = "", getImage = () => {}) {
+	return <Image src={sloganImage} alt="tamarind" className="lg:w-[560px] md:w-96 w-60 select-none cursor-pointer" onClick={getImage} width={560} height={560} />;
+}
 
 
 export default function TamarindSkyPage() {
@@ -19,6 +24,9 @@ export default function TamarindSkyPage() {
 	const ref = useRef(null);
 	const [image, takeScreenshot] = useScreenshot();
 	const getImage = () => takeScreenshot(ref.current);
+	const [randomDirection, setRandomDirection] = useState(0); // O for top-left, 1 for top-right, 2 for bottom-right, 3 for bottom-left
+	const [sloganImage, setSloganImage] = useState("");
+	const [sloganText, setSloganText] = useState("");
 
 
 	const download = (iImage, { name = 'img', extension = 'png' } = {}) => {
@@ -50,6 +58,24 @@ export default function TamarindSkyPage() {
 		return () => clearInterval(intervalId);
 	}, []);
 
+	useEffect(() => {
+		setRandomDirection(Math.floor(Math.random() * 4));
+	}, []);
+
+	useEffect(() => {
+		const fetchSlogan = async () => {
+			try {
+				const response = await getLatestSlogan();
+				setSloganImage(response.data.src);
+				setSloganText(response.data.forecastAndStories);
+			} catch (error) {
+				console.error("Failed to fetch latest slogan", error);
+			}
+		};
+
+		fetchSlogan();
+	}, []);
+
 	return (
 		<>
 			<ContextMenu>
@@ -59,12 +85,12 @@ export default function TamarindSkyPage() {
 							arrowLeftVisible && <Image src={arrowLeftIcon} alt="arrow-left" className="cursor-pointer select-none w-5 md:w-8 lg:w-10" />
 						}
 					</div>
-					<div className="relative flex items-center justify-center flex-col gap-12 w-4/5">
-						<Image src={tamarindImg} alt="tamarind" className="lg:w-[560px] md:w-96 w-60 select-none cursor-pointer" onClick={getImage} />
-						<p className="lg:w-[740px] w-full text-center cursor-default 2xl:text-2xl xl:text-2xl lg:text-2xl md:text-xl text-lg self-end" onMouseEnter={() => setTextHover(true)} onMouseLeave={() => setTextHover(false)}>
+					<div className={`relative flex items-center justify-center ${randomDirection === 2 || randomDirection === 3? "flex-col": "flex-col-reverse"} gap-12 w-4/5`}>
+						{SloganImage(sloganImage, getImage)}
+						<p className={`lg:w-[740px] w-full text-center cursor-default 2xl:text-2xl xl:text-2xl lg:text-2xl md:text-xl text-lg ${randomDirection === 1 || randomDirection === 2? "self-end": "self-start"}`} onMouseEnter={() => setTextHover(true)} onMouseLeave={() => setTextHover(false)}>
 							{
 								textHover ? "ସମୁଦ୍ର ଖାଉଛି ମାଟି । ମାଟି ଖାଉଛି ନୋଳିଆ । ନୋଳିଆ ଖାଉଛି ମାଛ । ମାଛ ଖାଉଛି ଜାଲି । ଜାଲି ଖାଉଛି ସମୁଦ୍ର ।" :
-									"The sea is eating the soil. The soil is eating the soil. The fish is eating the fish. Jali is eating fish. The sea is eating nets."
+									sloganText
 							}
 						</p>
 					</div>

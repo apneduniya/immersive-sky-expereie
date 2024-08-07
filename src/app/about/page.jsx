@@ -35,7 +35,7 @@ export default function AboutPage() {
                     }}
                 >
                     <div className="h-full w-full flex items-center">
-                        <p className="md:text-base text-sm font-serif text-justify p-5 w-full lg:w-10/12" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+                        <p className="md:text-base text-sm font-serif p-5 w-full lg:w-10/12" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
                             {
                                 !hover
                                     ? <>

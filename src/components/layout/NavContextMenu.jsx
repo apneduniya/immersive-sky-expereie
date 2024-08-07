@@ -53,39 +53,44 @@ function Menu() {
 
     return (
         <>
-            <ContextMenuContent className="bg-transparent border-none shadow-none">
-                {
-                    contextMenuContent.links.map((item, index) => (
-                        /* INFO: 1ST NAVLINK WILL BE CHANGED TO `/about` IF ITS HOME PAGE (/) OTHERWISE RESPECTED LINK WILL GO */
-                        item.id === 1 ?
-                            pathName === "/" ?
-                                <MenuItem key={index} item={
-                                    {
-                                        "id": 1,
-                                        "text": item.text,
-                                        "odia": item.odia,
-                                        "link": "/about"
-                                    }
-                                } />
-                                :
-                                <MenuItem key={index} item={item} />
-                            :
-                            item.id === 4 ?
-                                isUserLoggedIn ?
-                                    <MenuItem key={index} item={
-                                        {
-                                            "id": 4,
-                                            "text": "Portfolio",
-                                            "odia": "ପୋର୍ଟଫୋଲିଓ",
-                                            "link": "/upload-image"
-                                        }
-                                    } />
+            <ContextMenuContent className="bg- rounded-lg border-none shadow-none">
+                <div className="p-1 relative z-10 bg- rounded-lg">
+                    <div className="relative z-30">
+                        {
+                            contextMenuContent.links.map((item, index) => (
+                                /* INFO: 1ST NAVLINK WILL BE CHANGED TO `/about` IF ITS HOME PAGE (/) OTHERWISE RESPECTED LINK WILL GO */
+                                item.id === 1 ?
+                                    pathName === "/" ?
+                                        <MenuItem key={index} item={
+                                            {
+                                                "id": 1,
+                                                "text": item.text,
+                                                "odia": item.odia,
+                                                "link": "/about"
+                                            }
+                                        } />
+                                        :
+                                        <MenuItem key={index} item={item} />
                                     :
-                                    <MenuItem key={index} item={item} />
-                                :
-                                <MenuItem key={index} item={item} />
-                    ))
-                }
+                                    item.id === 4 ?
+                                        isUserLoggedIn ?
+                                            <MenuItem key={index} item={
+                                                {
+                                                    "id": 4,
+                                                    "text": "Portfolio",
+                                                    "odia": "ପୋର୍ଟଫୋଲିଓ",
+                                                    "link": "/upload-image"
+                                                }
+                                            } />
+                                            :
+                                            <MenuItem key={index} item={item} />
+                                        :
+                                        <MenuItem key={index} item={item} />
+                            ))
+                        }
+                    </div>
+                    <div className="absolute top-0 left-0 z-20 h-full w-full rounded-lg blur-sm bg-white opacity-50" />
+                </div>
             </ContextMenuContent>
         </>
     );

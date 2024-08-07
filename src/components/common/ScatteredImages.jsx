@@ -63,9 +63,10 @@ const ScatteredImages = ({ images }) => {
                             src={src}
                             // src={"https://picsum.photos/300/200" + `?random=${index}`}
                             alt={`spiral-img-${index}`}
-                            height={300}
-                            width={300}
-                            className="absolute transition-transform duration-500 transform hover:scale-110 h-44 w-72 cursor-pointer"
+                            // height={300}
+                            // width={300}
+                            fill
+                            className="absolute transition-transform duration-500 transform hover:scale-110 !h-44 !w-auto cursor-pointer"
                             style={{
                                 // transform: `translate(-50%, -50%)`,
                                 left: `${positions[index]?.x}px`,

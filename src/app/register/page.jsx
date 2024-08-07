@@ -12,10 +12,10 @@ import { updateBackgroundImage } from "@/utils/updateBGImg";
 
 
 export default function RegisterPage() {
-    const [username, setUsername] = useState("abc2");
-    const [email, setEmail] = useState("abc2@example.com");
-    const [password, setPassword] = useState("12345678");
-    const [confirmPassword, setConfirmPassword] = useState("12345678");
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [loading, setLoading] = useState(false);
 
     const router = useRouter();
