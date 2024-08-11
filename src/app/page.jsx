@@ -96,7 +96,7 @@ export default function HomePage() {
 		<>
 			<ContextMenu>
 				<main
-					className={`relative main px-10 flex items-center justify-between ${cursorVisible ? "cursor-default" : "cursor-none"}`}
+					className={`relative main px-10 flex items-center justify-between overflow-hidden ${cursorVisible ? "cursor-default" : "cursor-none"}`}
 				>
 					{
 						cursorVisible && <Mousefollower>
