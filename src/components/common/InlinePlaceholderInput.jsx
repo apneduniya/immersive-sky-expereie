@@ -5,7 +5,7 @@ export function InlinePlaceholderInput({ label, type="text", className="", input
     return (
         <>
             <div className={`flex gap-4 items-center justify-between ${className}`}>
-                <Input type={type} id={label} className={`placeholder:text-black border-[1.99px] bg-white text-black ${inputClassName}`} placeholder={label} value={value} onChange={onChange} name={name} />
+                <Input type={type} id={label} className={`placeholder:text-black !border-transparent focus:!border-transparent focus:!ring-0 focus:!ring-transparent bg-white text-black ${inputClassName}`} placeholder={label} value={value} onChange={onChange} name={name} />
             </div>
         </>
     )

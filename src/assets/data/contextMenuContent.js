@@ -11,8 +11,8 @@ export const contextMenuContent = {
         },
         {
             "id": 2,
-            "text": "Tamarind Sky",
-            "odia": "ଆକାଶ କୟାଁ",
+            "odia": "Tamarind Sky",
+            "text": "ଆକାଶ କୟାଁ",
             "link": "/tamarindsky"
         },
         {
@@ -23,9 +23,9 @@ export const contextMenuContent = {
         },
         {
             "id": 4,
-            "text": "Register",
-            "odia": "ରେଜିଷ୍ଟର",
-            "link": "/register"
+            "odia": "Register",
+            "test": "ରେଜିଷ୍ଟର",
+            "link": "/login"
         }
     ]
 }

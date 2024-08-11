@@ -30,8 +30,8 @@ export default function AboutPage() {
         <>
             <ContextMenu>
                 <main className="main px-5 lg:px-10 py-5 flex items-center justify-between">
-                    <div className="h-full w-full flex items-center">
-                        <p className="md:text-base text-sm font-serif p-5 w-full lg:w-10/12" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+                    <div className="h-full w-full flex items-start">
+                        <p className={`md:text-base text-sm font-serif p-5 w-full lg:w-10/12 ${hover && "-mt-10"}`} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
                             {
                                 !hover
                                     ? <>

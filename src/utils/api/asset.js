@@ -208,6 +208,8 @@ async function searchScatterAsset(data) {
         .map(key => key + '=' + data[key])
         .join('&'); // Convert object to query string like "key1=value1&key2=value2"
 
+    console.log("query", `${process.env.NEXT_PUBLIC_API_URL}/asset/search?${query}`);
+
     try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/asset/search?${query}`,
             {

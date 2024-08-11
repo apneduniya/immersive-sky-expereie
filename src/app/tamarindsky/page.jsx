@@ -6,7 +6,7 @@ import { useScreenshot, createFileName } from "use-react-screenshot";
 
 import arrowLeftIcon from "@/assets/icons/arrow_left.png";
 import arrowRightIcon from "@/assets/icons/arrow_right.png";
-// import tamarindImg from "@/assets/images/tamarind.png";
+import tamarindImg from "@/assets/images/tamarind.png";
 import ContextMenu from "@/components/layout/NavContextMenu";
 import { getLatestSlogan, getNewAssetURL } from "@/utils/api/asset";
 import { updateBackgroundImage } from "@/utils/updateBGImg";
@@ -27,6 +27,10 @@ export default function TamarindSkyPage() {
 	const [randomDirection, setRandomDirection] = useState(0); // O for top-left, 1 for top-right, 2 for bottom-right, 3 for bottom-left
 	const [sloganImage, setSloganImage] = useState("");
 	const [sloganText, setSloganText] = useState("");
+	const [isFirst, setIsFirst] = useState(true);
+    const [isLast, setIsLast] = useState(false);
+	const [assets, setAssets] = useState([]);
+    const [currentId, setCurrentId] = useState();
 
 
 	const download = (iImage, { name = 'img', extension = 'png' } = {}) => {
@@ -86,10 +90,10 @@ export default function TamarindSkyPage() {
 						}
 					</div>
 					<div className={`relative flex items-center justify-center ${randomDirection === 2 || randomDirection === 3? "flex-col": "flex-col-reverse"} gap-12 w-4/5`}>
-						{SloganImage(sloganImage, getImage)}
+						{SloganImage(tamarindImg, getImage)}
 						<p className={`lg:w-[740px] w-full text-center cursor-default 2xl:text-2xl xl:text-2xl lg:text-2xl md:text-xl text-lg ${randomDirection === 1 || randomDirection === 2? "self-end": "self-start"}`} onMouseEnter={() => setTextHover(true)} onMouseLeave={() => setTextHover(false)}>
 							{
-								textHover ? "ସମୁଦ୍ର ଖାଉଛି ମାଟି । ମାଟି ଖାଉଛି ନୋଳିଆ । ନୋଳିଆ ଖାଉଛି ମାଛ । ମାଛ ଖାଉଛି ଜାଲି । ଜାଲି ଖାଉଛି ସମୁଦ୍ର ।" :
+								textHover ? sloganText :
 									sloganText
 							}
 						</p>

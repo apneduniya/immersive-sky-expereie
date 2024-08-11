@@ -15,7 +15,7 @@ import arrowRightIcon from "@/assets/icons/arrow_right.png";
 import { CheckboxLabelInput } from "@/components/common/CheckboxLabelInput";
 
 
-function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNext = () => { }, handlePrev = () => { }, defaultSrc = "" }) {
+function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNext = () => { }, handlePrev = () => { }, defaultSrc = "", isFirst = false, isLast = false }) {
     const fileInputRef = useRef(null);
     const [hover, setHover] = useState(false);
 
@@ -264,20 +264,20 @@ function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNex
                     <div className="flex items-end">
                         <div className="w-[700px] relative" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} >
                             {
-                                hover && isUserLoggedIn && <Image src={arrowLeftIcon} alt="arrow-left" className="absolute cursor-pointer select-none w-5 md:w-8 lg:w-10 top-[50%] left-2 transform -translate-y-1/2" onClick={handlePrev} />
+                                !isFirst && hover && isUserLoggedIn && <Image src={arrowLeftIcon} alt="arrow-left" className="absolute cursor-pointer select-none w-5 md:w-8 lg:w-10 top-[50%] left-2 transform -translate-y-1/2" onClick={handlePrev} />
                             }
                             <Image src={formData.src} alt="upload-image" width={400} height={400} className="w-full" />
                             {
-                                hover && isUserLoggedIn && <Image src={arrowRightIcon} alt="arrow-left" className="absolute cursor-pointer select-none w-5 md:w-8 lg:w-10 top-[50%] right-2 transform -translate-y-1/2" onClick={handleNext} />
+                                !isLast && hover && isUserLoggedIn && <Image src={arrowRightIcon} alt="arrow-left" className="absolute cursor-pointer select-none w-5 md:w-8 lg:w-10 top-[50%] right-2 transform -translate-y-1/2" onClick={handleNext} />
                             }
                         </div>
                         {
-                            isUserLoggedIn? 
-                            <button className="bg-transparent border-none font-bold italic uppercase -rotate-90 mb-5" onClick={handleDelete}>
-                                Delete
-                            </button>
-                            :
-                            <div className="w-16"></div> /* Whitespace */
+                            isUserLoggedIn ?
+                                <button className="bg-transparent border-none font-bold italic uppercase -rotate-90 mb-5" onClick={handleDelete}>
+                                    Delete
+                                </button>
+                                :
+                                <div className="w-16"></div> /* Whitespace */
                         }
                     </div>
                     {/* Right container */}
@@ -287,10 +287,10 @@ function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNex
                             <InlineLabelInput label="Video" name="video" value={formData.video} onChange={handleChange} inputClassName="h-6 w-20" />
                             <InlineLabelInput label="Audio" name="audio" value={formData.audio} onChange={handleChange} inputClassName="h-6 w-20" />
                             <InlineLabelInput label="Sound" name="sound" value={formData.sound} onChange={handleChange} inputClassName="h-6 w-20" /> */}
-                            <CheckboxLabelInput label="Photo" value={formData.photo} onClick={()=>setFormData((prev)=>({...prev, photo: !prev.photo}))} />
-                            <CheckboxLabelInput label="Video" value={formData.video} onClick={()=>setFormData((prev)=>({...prev, video: !prev.video}))} />
-                            <CheckboxLabelInput label="Audio" value={formData.audio} onClick={()=>setFormData((prev)=>({...prev, audio: !prev.audio}))} />
-                            <CheckboxLabelInput label="Sound" value={formData.sound} onClick={()=>setFormData((prev)=>({...prev, sound: !prev.sound}))} />
+                            <CheckboxLabelInput label="Photo" value={formData.photo} onClick={() => setFormData((prev) => ({ ...prev, photo: !prev.photo }))} />
+                            <CheckboxLabelInput label="Video" value={formData.video} onClick={() => setFormData((prev) => ({ ...prev, video: !prev.video }))} />
+                            <CheckboxLabelInput label="Audio" value={formData.audio} onClick={() => setFormData((prev) => ({ ...prev, audio: !prev.audio }))} />
+                            <CheckboxLabelInput label="Sound" value={formData.sound} onClick={() => setFormData((prev) => ({ ...prev, sound: !prev.sound }))} />
                         </div>
                         <div className="self-end flex flex-col gap-2">
                             <InlineLabelInput label="File Name" name="fileName" value={formData.fileName} onChange={handleChange} inputClassName="h-6 w-20" />
@@ -451,11 +451,16 @@ function UploadPage() {
         fetchMyAssets();
     }, []);
 
+    const [isFirst, setIsFirst] = useState(true);
+    const [isLast, setIsLast] = useState(false);
+
     const handleNext = () => {
         setAssets(prev => {
             const index = prev.findIndex(asset => asset._id === currentId);
-            const nextIndex = (index + 1) % prev.length;
-            setCurrentId(prev[nextIndex]._id);
+            if (index < prev.length - 1) {
+                const nextIndex = index + 1;
+                setCurrentId(prev[nextIndex]._id);
+            }
             return prev;
         });
     };
@@ -463,11 +468,26 @@ function UploadPage() {
     const handlePrev = () => {
         setAssets(prev => {
             const index = prev.findIndex(asset => asset._id === currentId);
-            const prevIndex = (index - 1 + prev.length) % prev.length;
-            setCurrentId(prev[prevIndex]._id);
+            if (index > 0) {
+                const prevIndex = index - 1;
+                setCurrentId(prev[prevIndex]._id);
+            }
             return prev;
         });
     };
+
+    // Use useEffect to update the isFirst and isLast states
+    useEffect(() => {
+        setAssets(prev => {
+            const index = prev.findIndex(asset => asset._id === currentId);
+            console.log(index)
+            setIsFirst(index === 0);
+            setIsLast(index === prev.length - 1);
+            console.log(index === 0, index === prev.length - 1);
+            return prev;
+        });
+    }, [currentId, assets]);
+
 
     useEffect(() => {
 
@@ -526,6 +546,7 @@ function UploadPage() {
 
         fetchAssetByID();
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentId]);
 
 
@@ -533,7 +554,7 @@ function UploadPage() {
         <>
             <ContextMenu>
                 <main className="main max-w-dvw px-5 md:px-20 py-10 flex">
-                    <Upload isUserLoggedIn={isUserLoggedIn} id={currentId} handleNext={handleNext} handlePrev={handlePrev} data={data} defaultSrc={newUploadImgSrc} />
+                    <Upload isUserLoggedIn={isUserLoggedIn} id={currentId} handleNext={handleNext} handlePrev={handlePrev} data={data} defaultSrc={newUploadImgSrc} isFirst={isFirst} isLast={isLast} />
                 </main>
             </ContextMenu>
         </>

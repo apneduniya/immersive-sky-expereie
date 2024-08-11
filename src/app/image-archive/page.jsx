@@ -35,9 +35,24 @@ export default function ImageArchivePage() {
         });
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (searchType = "search") => {
+        let data = searchData;
+
+        if (searchType !== "search") {
+            // remove the value from search and give that to searchType key
+            setSearchData((prev) => ({
+                ...prev,
+                [searchType]: prev.search,
+                search: "",
+            }));
+
+            data.search = "";
+            data.searchType = searchData.search;
+
+            console.log(searchType, searchData.search, data)
+        }
         try {
-            const response = await searchScatterAsset(searchData);
+            const response = await searchScatterAsset(data);
             if (response.data.length !== 0 && response.success) {
                 setImages(response.data);
             } else {

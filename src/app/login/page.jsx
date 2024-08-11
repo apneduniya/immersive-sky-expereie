@@ -16,7 +16,6 @@ import { updateBackgroundImage } from "@/utils/updateBGImg";
 export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [terms, setTerms] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const router = useRouter();
@@ -37,10 +36,10 @@ export default function LoginPage() {
             return;
         }
 
-        if (!terms) {
-            alert("Please accept terms and conditions");
-            return;
-        }
+        // if (!terms) {
+        //     alert("Please accept terms and conditions");
+        //     return;
+        // }
 
         setLoading(true);
 
@@ -60,20 +59,20 @@ export default function LoginPage() {
     }
 
     useEffect(() => {
-		const fetchURL = async () => {
-		  try {
-			const fetchedUrl = await getNewAssetURL();
-			updateBackgroundImage(fetchedUrl.data); 
-		  } catch (error) {
-			console.error("Failed to fetch new asset URL", error);
-		  }
-		};
-	
-		fetchURL();
-		const intervalId = setInterval(fetchURL, process.env.NEXT_PUBLIC_LATEST_IMG_FETCH_TIME); // 1000 milliseconds = 1 second
-	
-		return () => clearInterval(intervalId);
-	  }, []);
+        const fetchURL = async () => {
+            try {
+                const fetchedUrl = await getNewAssetURL();
+                updateBackgroundImage(fetchedUrl.data);
+            } catch (error) {
+                console.error("Failed to fetch new asset URL", error);
+            }
+        };
+
+        fetchURL();
+        const intervalId = setInterval(fetchURL, process.env.NEXT_PUBLIC_LATEST_IMG_FETCH_TIME); // 1000 milliseconds = 1 second
+
+        return () => clearInterval(intervalId);
+    }, []);
 
     return (
         <>
@@ -81,28 +80,34 @@ export default function LoginPage() {
                 <main className="main flex items-center justify-center">
                     <div className="px-5 lg:px-10 py-5 w-dvw max-w-[520px]">
                         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-                            <Input type="email" placeholder="Email/Phone" onChange={handleEmailChange} value={email} className="w-full h-12 text-center bg-transparent placeholder:text-black border border-white text-xs" />
-                            <Input type="password" placeholder="Password" onChange={handlePasswordChange} value={password} className="w-full h-12 text-center bg-transparent placeholder:text-black border border-white text-xs" />
-                            <div className="mt-4 items-top flex space-x-2">
+                            <div className="relative z-10 h-12 w-full bg- rounded-lg flex items-center justify-center">
+                                <Input type="email" placeholder="Email" onChange={handleEmailChange} value={email} className="w-full h-12 text-center bg-transparent placeholder:text-black border border-white text-xs !border-transparent focus:!border-transparent focus:!ring-0 focus:!ring-transparent relative z-30 focus:!outline-none" />
+                                <div className="absolute z-20 h-full w-full rounded-lg blur-sm bg-white opacity-50" />
+                            </div>
+                            <div className="relative z-10 h-12 w-full bg- rounded-lg flex items-center justify-center">
+                                <Input type="password" placeholder="Password" onChange={handlePasswordChange} value={password} className="w-full h-12 text-center bg-transparent placeholder:text-black border border-white text-xs !border-transparent focus:!border-transparent focus:!ring-0 focus:!ring-transparent relative z-30 focus:!outline-none" />
+                                <div className="absolute z-20 h-full w-full rounded-lg blur-sm bg-white opacity-50" />
+                            </div>
+                            {/* <div className="mt-4 items-top flex space-x-2">
                                 <Checkbox id="terms1" checked={terms} onClick={() => setTerms(!terms)} />
                                 <div className="grid gap-1.5 leading-none">
                                     <label
                                         htmlFor="terms1"
                                         className="text-sm text-center font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-white"
                                     >
-                                        Accept terms and conditions
+                                        Terms and conditions
                                     </label>
                                     <p className="text-sm text-white">
                                         You agree to our Terms of Service and Privacy Policy.
                                     </p>
                                 </div>
-                            </div>
+                            </div> */}
                             <button className="relative z-10 h-12 w-full bg- rounded-lg flex items-center justify-center" type="submit" disabled={loading}>
                                 <span className="z-30">Sign In</span>
                                 <div className="absolute z-20 h-full w-full rounded-lg blur-sm bg-white opacity-50" />
                             </button>
 
-                            <div className="bg-gradient-to-r from-transparent via-neutral-500  to-transparent my-8 h-[1px] w-full" />
+                            {/* <div className="bg-gradient-to-r from-transparent via-neutral-500  to-transparent my-8 h-[1px] w-full" /> */}
 
                             {/* <Link href="/register">
                                 <button
@@ -127,14 +132,15 @@ export default function LoginPage() {
                                 </span>
                                 <BottomGradient />
                             </button> */}
-                            <div className="relative z-10 h-12 w-full bg- rounded-lg flex items-center justify-center cursor-pointer">
+                            <div className="relative z-10 h-12 w-full bg- rounded-lg flex items-center justify-center cursor-pointer my-4">
                                 <span className="z-30">Enter as a guest</span>
                                 <div className="absolute z-20 h-full w-full rounded-lg blur-sm bg-white opacity-50" />
                             </div>
                         </Link>
 
                         <p className="text-sm text-gray-700 mt-2 text-center">
-                            Do not have an account?{" "} <Link href="/register"><span className="text-zinc-950 underline font-bold">Sign Up</span></Link>
+                            {/* Do not have an account?{" "} */}
+                            <Link href="/register"><span className="text-zinc-950 underline font-bold">Sign Up</span></Link>
                         </p>
                     </div>
                 </main>

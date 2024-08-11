@@ -17,6 +17,7 @@ function MenuItem({ item }) {
                 <ContextMenuItem
                     onMouseEnter={() => setHover(true)}
                     onMouseLeave={() => setHover(false)}
+                    className="hover:!bg-transparent !py-1"
                 >
                     <span>
                         {hover ? item.odia : item.text}
@@ -53,7 +54,7 @@ function Menu() {
 
     return (
         <>
-            <ContextMenuContent className="bg- rounded-lg border-none shadow-none">
+            <ContextMenuContent className="bg- rounded-lg border-none shadow-none w-[290px]">
                 <div className="p-1 relative z-10 bg- rounded-lg">
                     <div className="relative z-30">
                         {
@@ -77,8 +78,8 @@ function Menu() {
                                             <MenuItem key={index} item={
                                                 {
                                                     "id": 4,
-                                                    "text": "Portfolio",
-                                                    "odia": "ପୋର୍ଟଫୋଲିଓ",
+                                                    "odia": "Portfolio",
+                                                    "text": "ପୋର୍ଟଫୋଲିଓ",
                                                     "link": "/upload-image"
                                                 }
                                             } />
@@ -89,7 +90,7 @@ function Menu() {
                             ))
                         }
                     </div>
-                    <div className="absolute top-0 left-0 z-20 h-full w-full rounded-lg blur-sm bg-white opacity-50" />
+                    <div className="absolute top-0 left-0 z-20 h-full w-full rounded-lg blur-sm bg-white opacity-25" />
                 </div>
             </ContextMenuContent>
         </>
