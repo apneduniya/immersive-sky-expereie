@@ -108,7 +108,7 @@ function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNex
     }
 
     const handleDelete = async () => {
-        if (id === "default") {
+        if (id === "default" || !isUserLoggedIn) {
             setFormData(
                 {
                     title: '',
@@ -275,14 +275,18 @@ function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNex
                                 !isLast && hover && isUserLoggedIn && <Image src={arrowRightIcon} alt="arrow-left" className="absolute cursor-pointer select-none w-5 md:w-8 lg:w-10 top-[50%] right-2 transform -translate-y-1/2" onClick={handleNext} />
                             }
                         </div>
+                        {/*
                         {
-                            isUserLoggedIn ?
-                                <button className="bg-transparent border-none font-bold italic uppercase -rotate-90 mb-5" onClick={handleDelete}>
-                                    Delete
-                                </button>
-                                :
-                                <div className="w-16"></div> /* Whitespace */
+                            isUserLoggedIn ? 
+                        */}
+                        <button className="bg-transparent border-none font-bold italic uppercase -rotate-90 mb-5" onClick={handleDelete}>
+                            Delete
+                        </button>
+                        {/*
+                        { :
+                                <div className="w-16"></div> // Whitespace
                         }
+                        */}
                     </div>
                     {/* Right container */}
                     <div className="w-1/4 flex flex-col rotate-90">

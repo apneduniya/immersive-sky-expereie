@@ -75,14 +75,24 @@ function Menu() {
                                     :
                                     item.id === 4 ?
                                         isUserLoggedIn ?
-                                            <MenuItem key={index} item={
-                                                {
-                                                    "id": 4,
-                                                    "odia": "Portfolio",
-                                                    "text": "ପୋର୍ଟଫୋଲିଓ",
-                                                    "link": "/upload-image"
-                                                }
-                                            } />
+                                            <>
+                                                <MenuItem key={index} item={
+                                                    {
+                                                        "id": 4,
+                                                        "odia": "Portfolio",
+                                                        "text": "ପୋର୍ଟଫୋଲିଓ",
+                                                        "link": "/upload-image"
+                                                    }
+                                                } />
+                                                <MenuItem key={index} item={
+                                                    {
+                                                        "id": 5,
+                                                        "text": "Log Out",
+                                                        "odia": "ପ୍ରସ୍ଥାନ କର",
+                                                        "link": "/logout"
+                                                    }
+                                                } />
+                                            </>
                                             :
                                             <MenuItem key={index} item={item} />
                                         :

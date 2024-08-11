@@ -157,7 +157,7 @@ export default function TamarindSkyPage() {
 				<main ref={ref} className="main flex items-center justify-between">
 					<div className="pl-10 min-h-dvh h-full w-15 md:w-18 lg:w-20 flex items-center justify-center" onMouseEnter={() => setArrowLeftVisible(true)} onMouseLeave={() => setArrowLeftVisible(false)}>
 						{
-							!isFirst && arrowLeftVisible && <Image src={arrowLeftIcon} alt="arrow-left" className="cursor-pointer select-none w-5 md:w-8 lg:w-10" onClick={handlePrev} />
+							!isLast && arrowLeftVisible && <Image src={arrowLeftIcon} alt="arrow-left" className="cursor-pointer select-none w-5 md:w-8 lg:w-10" onClick={handleNext} />
 						}
 					</div>
 					<div className={`relative flex items-center justify-center ${randomDirection === 2 || randomDirection === 3? "flex-col": "flex-col-reverse"} gap-12 w-4/5`}>
@@ -171,7 +171,7 @@ export default function TamarindSkyPage() {
 					</div>
 					<div className="pr-10 min-h-dvh h-full w-15 md:w-18 lg:w-20 flex items-center justify-center" onMouseEnter={() => setArrowRightVisible(true)} onMouseLeave={() => setArrowRightVisible(false)}>
 						{
-							!isLast && arrowRightVisible && <Image src={arrowRightIcon} alt="arrow-right" className="cursor-pointer select-none w-5 md:w-8 lg:w-10" onClick={handleNext} />
+							!isFirst && arrowRightVisible && <Image src={arrowRightIcon} alt="arrow-right" className="cursor-pointer select-none w-5 md:w-8 lg:w-10" onClick={handlePrev} />
 						}
 					</div>
 				</main>
