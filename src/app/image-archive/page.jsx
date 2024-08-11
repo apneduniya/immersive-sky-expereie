@@ -27,12 +27,33 @@ export default function ImageArchivePage() {
         day: "",
     });
 
+    const cleanSearchData = () => {
+        setSearchData({
+            disaster: "",
+            device: "",
+            modelNo: "",
+            search: "",
+            photo: "",
+            audio: "",
+            video: "",
+            archival: "",
+            document: "",
+            portfolio: "",
+            event: "",
+            place: "",
+            date: "",
+            day: "",
+        });
+    }
+
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setSearchData({
-            ...searchData,
+        setSearchData(prev => ({
+            ...prev,
             [name]: value,
-        });
+        }));
+
+        console.log(searchData);
     }
 
     const handleSubmit = async (searchType = "search") => {
@@ -40,24 +61,23 @@ export default function ImageArchivePage() {
 
         if (searchType !== "search") {
             // remove the value from search and give that to searchType key
-            setSearchData((prev) => ({
-                ...prev,
-                [searchType]: prev.search,
-                search: "",
-            }));
 
+            data[searchType] = searchData.search;
             data.search = "";
-            data.searchType = searchData.search;
+            // console.log(data, searchData);
+            // return;
 
-            console.log(searchType, searchData.search, data)
+            // console.log(searchType, searchData.search, data)
         }
         try {
             const response = await searchScatterAsset(data);
             if (response.data.length !== 0 && response.success) {
                 setImages(response.data);
+                cleanSearchData();
             } else {
                 if (!response.success) {
                     alert("No results found!");
+                    cleanSearchData();
                 }
             }
         } catch (error) {
@@ -69,7 +89,7 @@ export default function ImageArchivePage() {
 
     useEffect(() => {
         console.log(images);
-    },  [images])
+    }, [images])
 
     useEffect(() => {
         async function fetchImages() {
