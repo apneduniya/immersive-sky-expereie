@@ -82,6 +82,30 @@ async function getNewAsset() { // For home page to get keywords, geolocation, an
 }
 
 
+async function getAllAssets(){
+    try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/asset/all`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'accept': 'application/json',
+                }
+            }
+        );
+
+        return {
+            success: true,
+            data: response.data
+        }
+    } catch (error) {
+        return {
+            success: false,
+            data: error.response.data
+        }
+    }
+}
+
+
 async function getNewAssetURL() { // For other pages, just to get src
     try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/asset/new`,
@@ -263,6 +287,6 @@ async function searchScatterAsset(data) {
 
 
 export {
-    saveAsset, getNewAsset, getNewAssetURL, getScatterAsset, getAsset, getMyAssets, deleteAsset, getLatestSlogan, searchScatterAsset, processAsset
+    saveAsset, getNewAsset, getNewAssetURL, getScatterAsset, getAsset, getMyAssets, deleteAsset, getLatestSlogan, searchScatterAsset, processAsset, getAllAssets
 }
 

@@ -8,7 +8,7 @@ import arrowLeftIcon from "@/assets/icons/arrow_left.png";
 import arrowRightIcon from "@/assets/icons/arrow_right.png";
 import tamarindImg from "@/assets/images/tamarind.png";
 import ContextMenu from "@/components/layout/NavContextMenu";
-import { getLatestSlogan, getNewAssetURL } from "@/utils/api/asset";
+import { getAllAssets, getLatestSlogan, getNewAssetURL } from "@/utils/api/asset";
 import { updateBackgroundImage } from "@/utils/updateBGImg";
 
 
@@ -30,7 +30,7 @@ export default function TamarindSkyPage() {
 	const [isFirst, setIsFirst] = useState(true);
     const [isLast, setIsLast] = useState(false);
 	const [assets, setAssets] = useState([]);
-    const [currentId, setCurrentId] = useState();
+    const [currentId, setCurrentId] = useState("");
 
 
 	const download = (iImage, { name = 'img', extension = 'png' } = {}) => {
@@ -46,21 +46,21 @@ export default function TamarindSkyPage() {
 		}
 	}, [image])
 
-	useEffect(() => {
-		const fetchURL = async () => {
-			try {
-				const fetchedUrl = await getNewAssetURL();
-				updateBackgroundImage(fetchedUrl.data);
-			} catch (error) {
-				console.error("Failed to fetch new asset URL", error);
-			}
-		};
+	// useEffect(() => {
+	// 	const fetchURL = async () => {
+	// 		try {
+	// 			const fetchedUrl = await getNewAssetURL();
+	// 			updateBackgroundImage(fetchedUrl.data);
+	// 		} catch (error) {
+	// 			console.error("Failed to fetch new asset URL", error);
+	// 		}
+	// 	};
 
-		fetchURL();
-		const intervalId = setInterval(fetchURL, process.env.NEXT_PUBLIC_LATEST_IMG_FETCH_TIME); // 1000 milliseconds = 1 second
+	// 	fetchURL();
+	// 	const intervalId = setInterval(fetchURL, process.env.NEXT_PUBLIC_LATEST_IMG_FETCH_TIME); // 1000 milliseconds = 1 second
 
-		return () => clearInterval(intervalId);
-	}, []);
+	// 	return () => clearInterval(intervalId);
+	// }, []);
 
 	useEffect(() => {
 		setRandomDirection(Math.floor(Math.random() * 4));
@@ -80,13 +80,65 @@ export default function TamarindSkyPage() {
 		fetchSlogan();
 	}, []);
 
+	useEffect(() => {
+        const fetchAssets = async () => {
+            try {
+                const fetchedUrl = await getAllAssets();
+                if (fetchedUrl.success) {
+                    setAssets(prev => {
+                        const newAssets = fetchedUrl.data.filter(asset => !prev.some(a => a._id === asset._id));
+                        return [...prev, ...newAssets];
+                    });
+                }
+            } catch (error) {
+                console.error("Failed to fetch your assets:", error);
+            }
+        };
+
+        fetchAssets();
+    }, []);
+
+    const handleNext = () => {
+        setAssets(prev => {
+            const index = prev.findIndex(asset => asset._id === currentId);
+            if (index < prev.length - 1) {
+                const nextIndex = index + 1;
+                setCurrentId(prev[nextIndex]._id);
+            }
+            return prev;
+        });
+    };
+
+    const handlePrev = () => {
+        setAssets(prev => {
+            const index = prev.findIndex(asset => asset._id === currentId);
+            if (index > 0) {
+                const prevIndex = index - 1;
+                setCurrentId(prev[prevIndex]._id);
+            }
+            return prev;
+        });
+    };
+
+    // Use useEffect to update the isFirst and isLast states
+    useEffect(() => {
+        setAssets(prev => {
+            const index = prev.findIndex(asset => asset._id === currentId);
+            console.log(index)
+            setIsFirst(index === 0);
+            setIsLast(index === prev.length - 1);
+            console.log(index === 0, index === prev.length - 1);
+            return prev;
+        });
+    }, [currentId, assets]);
+
 	return (
 		<>
 			<ContextMenu>
 				<main ref={ref} className="main flex items-center justify-between">
 					<div className="pl-10 min-h-dvh h-full w-15 md:w-18 lg:w-20 flex items-center justify-center" onMouseEnter={() => setArrowLeftVisible(true)} onMouseLeave={() => setArrowLeftVisible(false)}>
 						{
-							arrowLeftVisible && <Image src={arrowLeftIcon} alt="arrow-left" className="cursor-pointer select-none w-5 md:w-8 lg:w-10" />
+							!isFirst && arrowLeftVisible && <Image src={arrowLeftIcon} alt="arrow-left" className="cursor-pointer select-none w-5 md:w-8 lg:w-10" onClick={handlePrev} />
 						}
 					</div>
 					<div className={`relative flex items-center justify-center ${randomDirection === 2 || randomDirection === 3? "flex-col": "flex-col-reverse"} gap-12 w-4/5`}>
@@ -100,7 +152,7 @@ export default function TamarindSkyPage() {
 					</div>
 					<div className="pr-10 min-h-dvh h-full w-15 md:w-18 lg:w-20 flex items-center justify-center" onMouseEnter={() => setArrowRightVisible(true)} onMouseLeave={() => setArrowRightVisible(false)}>
 						{
-							arrowRightVisible && <Image src={arrowRightIcon} alt="arrow-right" className="cursor-pointer select-none w-5 md:w-8 lg:w-10" />
+							!isLast && arrowRightVisible && <Image src={arrowRightIcon} alt="arrow-right" className="cursor-pointer select-none w-5 md:w-8 lg:w-10" onClick={handleNext} />
 						}
 					</div>
 				</main>

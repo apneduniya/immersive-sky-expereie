@@ -24,7 +24,7 @@ export const contextMenuContent = {
         {
             "id": 4,
             "odia": "Register",
-            "test": "ରେଜିଷ୍ଟର",
+            "text": "ରେଜିଷ୍ଟର",
             "link": "/login"
         }
     ]
