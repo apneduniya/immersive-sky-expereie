@@ -25,7 +25,7 @@ export default function TamarindSkyPage() {
 	const [image, takeScreenshot] = useScreenshot();
 	const getImage = () => takeScreenshot(ref.current);
 	const [randomDirection, setRandomDirection] = useState(0); // O for top-left, 1 for top-right, 2 for bottom-right, 3 for bottom-left
-	const [sloganImage, setSloganImage] = useState("");
+	// const [sloganImage, setSloganImage] = useState("");
 	const [sloganText, setSloganText] = useState("");
 	const [isFirst, setIsFirst] = useState(true);
     const [isLast, setIsLast] = useState(false);
@@ -66,19 +66,19 @@ export default function TamarindSkyPage() {
 		setRandomDirection(Math.floor(Math.random() * 4));
 	}, []);
 
-	useEffect(() => {
-		const fetchSlogan = async () => {
-			try {
-				const response = await getLatestSlogan();
-				setSloganImage(response.data.src);
-				setSloganText(response.data.forecastAndStories);
-			} catch (error) {
-				console.error("Failed to fetch latest slogan", error);
-			}
-		};
+	// useEffect(() => {
+	// 	const fetchSlogan = async () => {
+	// 		try {
+	// 			const response = await getLatestSlogan();
+	// 			setSloganImage(response.data.src);
+	// 			setSloganText(response.data.forecastAndStories);
+	// 		} catch (error) {
+	// 			console.error("Failed to fetch latest slogan", error);
+	// 		}
+	// 	};
 
-		fetchSlogan();
-	}, []);
+	// 	fetchSlogan();
+	// }, []);
 
 	useEffect(() => {
         const fetchAssets = async () => {
@@ -89,6 +89,14 @@ export default function TamarindSkyPage() {
                         const newAssets = fetchedUrl.data.filter(asset => !prev.some(a => a._id === asset._id));
                         return [...prev, ...newAssets];
                     });
+
+					console.log(fetchedUrl.data);
+
+					if (fetchedUrl.data.length > 0) {
+						setCurrentId(fetchedUrl.data[0]._id);
+						updateBackgroundImage(fetchedUrl.data[0].src);
+						setSloganText(fetchedUrl.data[0].forecastAndStories);
+					}
                 }
             } catch (error) {
                 console.error("Failed to fetch your assets:", error);
@@ -101,9 +109,12 @@ export default function TamarindSkyPage() {
     const handleNext = () => {
         setAssets(prev => {
             const index = prev.findIndex(asset => asset._id === currentId);
+			console.log(currentId)
+			console.log(index)
             if (index < prev.length - 1) {
                 const nextIndex = index + 1;
                 setCurrentId(prev[nextIndex]._id);
+				console.log(prev[nextIndex]._id);
             }
             return prev;
         });
@@ -130,6 +141,14 @@ export default function TamarindSkyPage() {
             console.log(index === 0, index === prev.length - 1);
             return prev;
         });
+
+		// Update the background image and slogan text
+		const currentAsset = assets.find(asset => asset._id === currentId);
+		if (currentAsset) {
+			updateBackgroundImage(currentAsset.src);
+			setSloganText(currentAsset.forecastAndStories);
+		}
+
     }, [currentId, assets]);
 
 	return (
