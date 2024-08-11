@@ -31,6 +31,33 @@ async function saveAsset(data) {
 }
 
 
+async function processAsset(url) {
+    try {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/asset/process_image`,
+            {
+                image_url: url
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'accept': 'application/json',
+                }
+            }
+        );
+
+        return {
+            success: true,
+            data: response.data
+        }
+    } catch (error) {
+        return {
+            success: false,
+            data: error.response.data
+        }
+    }
+}
+
+
 async function getNewAsset() { // For home page to get keywords, geolocation, and src
     try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/asset/new`,
@@ -236,6 +263,6 @@ async function searchScatterAsset(data) {
 
 
 export {
-    saveAsset, getNewAsset, getNewAssetURL, getScatterAsset, getAsset, getMyAssets, deleteAsset, getLatestSlogan, searchScatterAsset
+    saveAsset, getNewAsset, getNewAssetURL, getScatterAsset, getAsset, getMyAssets, deleteAsset, getLatestSlogan, searchScatterAsset, processAsset
 }
 

@@ -5,7 +5,7 @@ import ContextMenu from "@/components/layout/NavContextMenu";
 import Image from "next/image";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { getUser } from "@/utils/api/auth";
-import { deleteAsset, getAsset, getMyAssets, saveAsset } from "@/utils/api/asset";
+import { deleteAsset, getAsset, getMyAssets, processAsset, saveAsset } from "@/utils/api/asset";
 import defaultImg from "@/assets/images/default_img.jpg";
 import { uploadImageToImgBB } from "@/utils/save_img";
 import { getNewAssetURL } from "@/utils/api/asset";
@@ -75,8 +75,12 @@ function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNex
                 const response = await uploadImageToImgBB(base64Image.split(',')[1]);
                 console.log("Response from ImgBB:", response);
                 const url = response.data.url;
+                const processedImg = await processAsset(url);
+                const processedImgBase64 = processedImg.data.image_base64;
+                const final_response = await uploadImageToImgBB(processedImgBase64);
+                const final_url = final_response.data.url;
 
-                await handleSubmit(url);
+                await handleSubmit(final_url);
             }
             reader.readAsDataURL(file);
         }
