@@ -67,7 +67,7 @@ function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNex
     const handleFileChange = async (e) => {
         const files = Array.from(e.target.files);
 
-        for (const file of files) {
+        for (const [index, file] of files.entries()) {
             const reader = new FileReader();
             reader.onload = async (e) => {
                 const base64Image = e.target.result;
@@ -81,11 +81,16 @@ function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNex
                 const final_url = final_response.data.url;
 
                 await handleSubmit(final_url);
+
+                // Check if it's the last index
+                if (index === files.length - 1) {
+                    // Code for last index
+                    alert("File uploaded successfully!");
+                    // Add your code here
+                }
             }
             reader.readAsDataURL(file);
         }
-
-        alert("Files submitted successfully");
     };
 
     const handleUploadClick = () => {
@@ -327,7 +332,7 @@ function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNex
                     <div className="w-[750px] -ml-36 px-10 flex flex-col gap-5 items-center">
                         {/* First container */}
                         <div className="flex w-full gap-10 justify-center">
-                            <InlineLabelInput label="Title" name="title" value={formData.title} onChange={handleChange} inputClassName="h-6" className="w-full" />
+                            <InlineLabelInput label="Title" name="title" value={formData.title} onChange={handleChange} inputClassName="h-6 w-full" className="w-full" />
                             <button className="bg-transparent border-none font-bold italic uppercase" onClick={handleUploadClick}>
                                 Upload
                             </button>

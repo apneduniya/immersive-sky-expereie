@@ -1,11 +1,19 @@
 import axios from 'axios';
-import { getToken } from './auth';
+import { getToken, getUser } from './auth';
 
 
 async function saveAsset(data) {
     try {
 
-        console.log("data", data);
+        // console.log("data", data);
+        let user_id = "guest";
+
+        const user = await getUser();
+        if (user.success) {
+            user_id = user.data._id;
+        }
+
+        data.user_id = user_id;
 
         const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/asset/create`,
             data,
@@ -13,7 +21,7 @@ async function saveAsset(data) {
                 headers: {
                     'Content-Type': 'application/json',
                     'accept': 'application/json',
-                    'Authorization': `Bearer ${getToken()}`
+                    // 'Authorization': `Bearer ${getToken()}`
                 }
             }
         );

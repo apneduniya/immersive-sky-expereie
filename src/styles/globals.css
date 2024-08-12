@@ -101,3 +101,8 @@
   transition: background-image 5s ease-in-out; /* Transition for background image */
 }
 
+* {
+  font-size: 0.95rem !important;
+  line-height: 1.25rem !important;
+  font-style: normal !important;
+}
