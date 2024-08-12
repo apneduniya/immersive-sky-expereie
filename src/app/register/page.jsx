@@ -129,11 +129,11 @@ export default function RegisterPage() {
                                 <div className="absolute z-20 h-full w-full rounded-lg blur-sm bg-white opacity-50" />
                             </button>
                             <div className="mt-4 flex space-x-2 w-full">
-                                <Checkbox id="terms1" checked={terms} onClick={() => setTerms(!terms)} />
+                                <Checkbox id="terms1" checked={terms} onClick={() => setTerms(!terms)} className="border-black" />
                                 <div className="leading-none flex justify-center w-full">
                                     <label
                                         htmlFor="terms1"
-                                        className="text-sm text-center font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-white"
+                                        className="text-sm text-center font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-black"
                                     >
                                         Terms and conditions
                                     </label>
