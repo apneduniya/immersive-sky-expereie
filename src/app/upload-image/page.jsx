@@ -75,12 +75,12 @@ function Upload({ isUserLoggedIn = false, data = null, id = "default", handleNex
                 const response = await uploadImageToImgBB(base64Image.split(',')[1]);
                 console.log("Response from ImgBB:", response);
                 const url = response.data.url;
-                // const processedImg = await processAsset(url);
-                // const processedImgBase64 = processedImg.data.image_base64;
-                // const final_response = await uploadImageToImgBB(processedImgBase64);
-                // const final_url = final_response.data.url;
+                const processedImg = await processAsset(url);
+                const processedImgBase64 = processedImg.data.image_base64;
+                const final_response = await uploadImageToImgBB(processedImgBase64);
+                const final_url = final_response.data.url;
 
-                await handleSubmit(url);
+                await handleSubmit(final_url);
 
                 // Check if it's the last index
                 if (index === files.length - 1) {
