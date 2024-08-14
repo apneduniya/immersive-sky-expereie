@@ -42,11 +42,20 @@ export default function AboutPage() {
                                         <br />
                                         <br />
                                         The ISE algorithm analyses environmental disaster images, studies and identifies patterns, extracts the sky part, composes the metadata, and provides a digital sky experience. ISE stories are based on ground-level data, collected from our 'stations' situated near the coast of the Bay of Bengal at Bagapatia rehabilitation colony (Kendrapada district), the land erosion site of Podampeta (Ganjam district), and the capital city of Bhubaneswar in Odisha.
+                                        <br />
+                                        <br />
                                         The interactive website enables and facilitates marginal and climate-vulnerable communities from coastal Odisha, and share environment stories, experiences, and concerns and sustainably engage with the colloquial perspective on climate change. ISE website also hosts an ‘Environment Disaster Image Archive’ for the public, which has audiovisual information and documents on different environmental disasters from Odisha.
-                                        ‘Immersive Sky Experience’ was conceived and created by Paribartana Mohanty
+                                        <br />
+                                        <br />
+                                        <strong>‘Immersive Sky Experience’ was conceived and created by Paribartana Mohanty</strong>
+                                        <br />
+                                        <br />
                                         Text and Translation: Paribartana Mohanty and Gita Nandan Ballabha Das
+                                        <br />
                                         Research and Resouce: Jyoti Ranjan Sahoo, Gita Nandan Ballabha Das, Satyabadi Biswal
+                                        <br />
                                         Tamarind (Drawing): Shashikant Mohanty
+                                        <br />
                                         Technology and Assistance: Python language and Pytorch library to build the AI model
                                         <br />
                                         <br />
@@ -56,7 +65,7 @@ export default function AboutPage() {
                                         Sharjah Art Foundation Production Programme 2023<br />
                                         Prince Claus Mentorship Award for Cultural & Artistic Responses to Environmental Change 2022-23<br />
                                         <br />
-                                        Contact: immersiveskyexperience@gmail.com / +91 9717796399
+                                        <strong>Contact:</strong> <span className='underline'>immersiveskyexperience@gmail.com</span> / +91 9717796399
 
                                     </>
                                     :
